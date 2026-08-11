@@ -1,0 +1,31 @@
+data:
+  manifest_path: "data/manifest.csv"
+  image_size: 384
+  swede_threshold: 5
+
+model:
+  encoder: "resnet34"        # resnet18 / resnet34 / resnet50
+  pretrained: true
+  use_cls_head: true         # auxiliary classification head (set false to go seg-only)
+  dropout: 0.2
+
+training:
+  epochs: 100
+  batch_size: 8               # raise if your GPU has headroom at image_size=384
+  num_workers: 4
+  learning_rate: 0.0003       # this is the DECODER/heads LR; encoder = this * encoder_lr_mult
+  encoder_lr_mult: 0.1
+  weight_decay: 0.00001
+  warmup_epochs: 3
+  early_stopping_patience: 20
+  mixed_precision: true
+  seg_loss_weight: 1.0
+  cls_loss_weight: 0.3        # kept low: segmentation is the primary task
+  seg_bce_weight: 0.5
+  seg_dice_weight: 0.5
+  use_tversky: false          # switch to true + tune alpha/beta below to bias recall
+  tversky_alpha: 0.4          # false-positive weight
+  tversky_beta: 0.6           # false-negative weight (>alpha => favors recall)
+
+output:
+  dir: "outputs/"

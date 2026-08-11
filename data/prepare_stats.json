@@ -1,0 +1,8 @@
+{
+  "n_cases": 100,
+  "n_images": 532,
+  "n_with_mask": 297,
+  "swede_threshold": 5,
+  "mask_size": 384,
+  "crop_ratio": 0.8
+}

@@ -1,0 +1,533 @@
+case_id,img_path,mask_path,has_mask,img_type,swede_score,label,parsed_mask_path,mask_is_empty,split
+1,annocerv_raw/dataset/Case 1/C1Aceto (1).jpg,annocerv_raw/dataset/Case 1/C1Aceto (1).png,True,aceto,0,0,data/masks/case001_C1Aceto_(1).png,True,train
+1,annocerv_raw/dataset/Case 1/C1Aceto (2).jpg,annocerv_raw/dataset/Case 1/C1Aceto (2).png,True,aceto,0,0,data/masks/case001_C1Aceto_(2).png,True,train
+1,annocerv_raw/dataset/Case 1/C1Aceto (3).jpg,annocerv_raw/dataset/Case 1/C1Aceto (3).png,True,aceto,0,0,data/masks/case001_C1Aceto_(3).png,True,train
+1,annocerv_raw/dataset/Case 1/C1Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+1,annocerv_raw/dataset/Case 1/C1Iod (2).jpg,,False,iodine_or_green,0,0,,,train
+2,annocerv_raw/dataset/Case 2/C2Aceto (1).jpg,annocerv_raw/dataset/Case 2/C2Aceto (1).png,True,aceto,2,0,data/masks/case002_C2Aceto_(1).png,True,val
+2,annocerv_raw/dataset/Case 2/C2Aceto (2).jpg,annocerv_raw/dataset/Case 2/C2Aceto (2).png,True,aceto,2,0,data/masks/case002_C2Aceto_(2).png,True,val
+2,annocerv_raw/dataset/Case 2/C2Aceto (3).jpg,annocerv_raw/dataset/Case 2/C2Aceto (3).png,True,aceto,2,0,data/masks/case002_C2Aceto_(3).png,True,val
+2,annocerv_raw/dataset/Case 2/C2Iod (1).jpg,,False,iodine_or_green,2,0,,,val
+2,annocerv_raw/dataset/Case 2/C2Iod (2).jpg,,False,iodine_or_green,2,0,,,val
+2,annocerv_raw/dataset/Case 2/C2Iod (3).jpg,,False,iodine_or_green,2,0,,,val
+3,annocerv_raw/dataset/Case 3/C3Aceto (1).jpg,annocerv_raw/dataset/Case 3/C3Aceto (1).png,True,aceto,4,0,data/masks/case003_C3Aceto_(1).png,False,train
+3,annocerv_raw/dataset/Case 3/C3Aceto (2).jpg,annocerv_raw/dataset/Case 3/C3Aceto (2).png,True,aceto,4,0,data/masks/case003_C3Aceto_(2).png,True,train
+3,annocerv_raw/dataset/Case 3/C3Aceto (3).jpg,annocerv_raw/dataset/Case 3/C3Aceto (3).png,True,aceto,4,0,data/masks/case003_C3Aceto_(3).png,True,train
+3,annocerv_raw/dataset/Case 3/C3Aceto (4).jpg,annocerv_raw/dataset/Case 3/C3Aceto (4).png,True,aceto,4,0,data/masks/case003_C3Aceto_(4).png,True,train
+3,annocerv_raw/dataset/Case 3/C3Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+3,annocerv_raw/dataset/Case 3/C3Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+3,annocerv_raw/dataset/Case 3/C3Iod (3).jpg,,False,iodine_or_green,4,0,,,train
+4,annocerv_raw/dataset/Case 4/C4Aceto (1).jpg,annocerv_raw/dataset/Case 4/C4Aceto (1).png,True,aceto,2,0,data/masks/case004_C4Aceto_(1).png,False,train
+4,annocerv_raw/dataset/Case 4/C4Aceto (2).jpg,annocerv_raw/dataset/Case 4/C4Aceto (2).png,True,aceto,2,0,data/masks/case004_C4Aceto_(2).png,False,train
+4,annocerv_raw/dataset/Case 4/C4Iod (1).jpg,,False,iodine_or_green,2,0,,,train
+4,annocerv_raw/dataset/Case 4/C4Iod (2).jpg,,False,iodine_or_green,2,0,,,train
+4,annocerv_raw/dataset/Case 4/C4Iod (3).jpg,,False,iodine_or_green,2,0,,,train
+5,annocerv_raw/dataset/Case 5/C5Aceto (1).jpg,annocerv_raw/dataset/Case 5/C5Aceto (1).png,True,aceto,2,0,data/masks/case005_C5Aceto_(1).png,True,train
+5,annocerv_raw/dataset/Case 5/C5Aceto (2).jpg,annocerv_raw/dataset/Case 5/C5Aceto (2).png,True,aceto,2,0,data/masks/case005_C5Aceto_(2).png,True,train
+5,annocerv_raw/dataset/Case 5/C5Aceto (3).jpg,annocerv_raw/dataset/Case 5/C5Aceto (3).png,True,aceto,2,0,data/masks/case005_C5Aceto_(3).png,True,train
+5,annocerv_raw/dataset/Case 5/C5Iod (1).jpg,,False,iodine_or_green,2,0,,,train
+5,annocerv_raw/dataset/Case 5/C5Iod (2).jpg,,False,iodine_or_green,2,0,,,train
+5,annocerv_raw/dataset/Case 5/C5Iod (3).jpg,,False,iodine_or_green,2,0,,,train
+5,annocerv_raw/dataset/Case 5/C5Iod (4).jpg,,False,iodine_or_green,2,0,,,train
+6,annocerv_raw/dataset/Case 6/C6Aceto (1).jpg,annocerv_raw/dataset/Case 6/C6Aceto (1).png,True,aceto,7,1,data/masks/case006_C6Aceto_(1).png,False,train
+6,annocerv_raw/dataset/Case 6/C6Aceto (2).jpg,annocerv_raw/dataset/Case 6/C6Aceto (2).png,True,aceto,7,1,data/masks/case006_C6Aceto_(2).png,False,train
+6,annocerv_raw/dataset/Case 6/C6Aceto (3).jpg,annocerv_raw/dataset/Case 6/C6Aceto (3).png,True,aceto,7,1,data/masks/case006_C6Aceto_(3).png,False,train
+6,annocerv_raw/dataset/Case 6/C6Aceto (4).jpg,annocerv_raw/dataset/Case 6/C6Aceto (4).png,True,aceto,7,1,data/masks/case006_C6Aceto_(4).png,False,train
+6,annocerv_raw/dataset/Case 6/C6Aceto (5).jpg,annocerv_raw/dataset/Case 6/C6Aceto (5).png,True,aceto,7,1,data/masks/case006_C6Aceto_(5).png,False,train
+6,annocerv_raw/dataset/Case 6/C6Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+6,annocerv_raw/dataset/Case 6/C6Iod (2).jpg,,False,iodine_or_green,7,1,,,train
+6,annocerv_raw/dataset/Case 6/C6Iod (3).jpg,,False,iodine_or_green,7,1,,,train
+7,annocerv_raw/dataset/Case 7/C7Aceto (1).jpg,annocerv_raw/dataset/Case 7/C7Aceto (1).png,True,aceto,6,1,data/masks/case007_C7Aceto_(1).png,False,test
+7,annocerv_raw/dataset/Case 7/C7Aceto (2).jpg,annocerv_raw/dataset/Case 7/C7Aceto (2).png,True,aceto,6,1,data/masks/case007_C7Aceto_(2).png,False,test
+7,annocerv_raw/dataset/Case 7/C7Aceto (3).jpg,annocerv_raw/dataset/Case 7/C7Aceto (3).png,True,aceto,6,1,data/masks/case007_C7Aceto_(3).png,True,test
+7,annocerv_raw/dataset/Case 7/C7Aceto (4).jpg,annocerv_raw/dataset/Case 7/C7Aceto (4).png,True,aceto,6,1,data/masks/case007_C7Aceto_(4).png,False,test
+7,annocerv_raw/dataset/Case 7/C7Aceto (5).jpg,annocerv_raw/dataset/Case 7/C7Aceto (5).png,True,aceto,6,1,data/masks/case007_C7Aceto_(5).png,True,test
+8,annocerv_raw/dataset/Case 8/C8Aceto (1).jpg,annocerv_raw/dataset/Case 8/C8Aceto (1).png,True,aceto,6,1,data/masks/case008_C8Aceto_(1).png,False,train
+8,annocerv_raw/dataset/Case 8/C8Aceto (2).jpg,annocerv_raw/dataset/Case 8/C8Aceto (2).png,True,aceto,6,1,data/masks/case008_C8Aceto_(2).png,False,train
+8,annocerv_raw/dataset/Case 8/C8Aceto (3).jpg,annocerv_raw/dataset/Case 8/C8Aceto (3).png,True,aceto,6,1,data/masks/case008_C8Aceto_(3).png,False,train
+8,annocerv_raw/dataset/Case 8/C8Aceto (4).jpg,annocerv_raw/dataset/Case 8/C8Aceto (4).png,True,aceto,6,1,data/masks/case008_C8Aceto_(4).png,False,train
+8,annocerv_raw/dataset/Case 8/C8Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+8,annocerv_raw/dataset/Case 8/C8Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+9,annocerv_raw/dataset/Case 9/C9Aceto (1).jpg,annocerv_raw/dataset/Case 9/C9Aceto (1).png,True,aceto,1,0,data/masks/case009_C9Aceto_(1).png,True,train
+9,annocerv_raw/dataset/Case 9/C9Aceto (2).jpg,annocerv_raw/dataset/Case 9/C9Aceto (2).png,True,aceto,1,0,data/masks/case009_C9Aceto_(2).png,True,train
+9,annocerv_raw/dataset/Case 9/C9Iod (1).jpg,,False,iodine_or_green,1,0,,,train
+9,annocerv_raw/dataset/Case 9/C9Iod (2).jpg,,False,iodine_or_green,1,0,,,train
+9,annocerv_raw/dataset/Case 9/C9Iod (3).jpg,,False,iodine_or_green,1,0,,,train
+10,annocerv_raw/dataset/Case 10/C10Aceto (1).jpg,annocerv_raw/dataset/Case 10/C10Aceto (1).png,True,aceto,2,0,data/masks/case010_C10Aceto_(1).png,True,train
+10,annocerv_raw/dataset/Case 10/C10Aceto (2).jpg,annocerv_raw/dataset/Case 10/C10Aceto (2).png,True,aceto,2,0,data/masks/case010_C10Aceto_(2).png,True,train
+10,annocerv_raw/dataset/Case 10/C10Aceto (3).jpg,annocerv_raw/dataset/Case 10/C10Aceto (3).png,True,aceto,2,0,data/masks/case010_C10Aceto_(3).png,True,train
+10,annocerv_raw/dataset/Case 10/C10Iod (1).jpg,,False,iodine_or_green,2,0,,,train
+10,annocerv_raw/dataset/Case 10/C10Iod (2).jpg,,False,iodine_or_green,2,0,,,train
+11,annocerv_raw/dataset/Case 11/C11Aceto (1).jpg,annocerv_raw/dataset/Case 11/C11Aceto (1).png,True,aceto,2,0,data/masks/case011_C11Aceto_(1).png,False,test
+11,annocerv_raw/dataset/Case 11/C11Aceto (2).jpg,annocerv_raw/dataset/Case 11/C11Aceto (2).png,True,aceto,2,0,data/masks/case011_C11Aceto_(2).png,False,test
+11,annocerv_raw/dataset/Case 11/C11Green (1).jpg,,False,iodine_or_green,2,0,,,test
+11,annocerv_raw/dataset/Case 11/C11Iod (1).jpg,,False,iodine_or_green,2,0,,,test
+11,annocerv_raw/dataset/Case 11/C11Iod (2).jpg,,False,iodine_or_green,2,0,,,test
+11,annocerv_raw/dataset/Case 11/C11Iod (3).jpg,,False,iodine_or_green,2,0,,,test
+11,annocerv_raw/dataset/Case 11/C11Iod (4).jpg,,False,iodine_or_green,2,0,,,test
+12,annocerv_raw/dataset/Case 12/C12Aceto (1).jpg,annocerv_raw/dataset/Case 12/C12Aceto (1).png,True,aceto,5,1,data/masks/case012_C12Aceto_(1).png,True,test
+12,annocerv_raw/dataset/Case 12/C12Aceto (2).jpg,annocerv_raw/dataset/Case 12/C12Aceto (2).png,True,aceto,5,1,data/masks/case012_C12Aceto_(2).png,True,test
+12,annocerv_raw/dataset/Case 12/C12Aceto (3).jpg,annocerv_raw/dataset/Case 12/C12Aceto (3).png,True,aceto,5,1,data/masks/case012_C12Aceto_(3).png,True,test
+12,annocerv_raw/dataset/Case 12/C12Aceto (4).jpg,annocerv_raw/dataset/Case 12/C12Aceto (4).png,True,aceto,5,1,data/masks/case012_C12Aceto_(4).png,True,test
+12,annocerv_raw/dataset/Case 12/C12Aceto (5).jpg,annocerv_raw/dataset/Case 12/C12Aceto (5).png,True,aceto,5,1,data/masks/case012_C12Aceto_(5).png,True,test
+12,annocerv_raw/dataset/Case 12/C12Aceto (6).jpg,annocerv_raw/dataset/Case 12/C12Aceto (6).png,True,aceto,5,1,data/masks/case012_C12Aceto_(6).png,True,test
+12,annocerv_raw/dataset/Case 12/C12Iod (1).jpg,,False,iodine_or_green,5,1,,,test
+12,annocerv_raw/dataset/Case 12/C12Iod (2).jpg,,False,iodine_or_green,5,1,,,test
+13,annocerv_raw/dataset/Case 13/C13Aceto (1).jpg,annocerv_raw/dataset/Case 13/C13Aceto (1).png,True,aceto,1,0,data/masks/case013_C13Aceto_(1).png,True,train
+13,annocerv_raw/dataset/Case 13/C13Aceto (2).jpg,annocerv_raw/dataset/Case 13/C13Aceto (2).png,True,aceto,1,0,data/masks/case013_C13Aceto_(2).png,True,train
+13,annocerv_raw/dataset/Case 13/C13Aceto (3).jpg,annocerv_raw/dataset/Case 13/C13Aceto (3).png,True,aceto,1,0,data/masks/case013_C13Aceto_(3).png,True,train
+13,annocerv_raw/dataset/Case 13/C13Aceto (4).jpg,annocerv_raw/dataset/Case 13/C13Aceto (4).png,True,aceto,1,0,data/masks/case013_C13Aceto_(4).png,True,train
+13,annocerv_raw/dataset/Case 13/C13Aceto (5).jpg,annocerv_raw/dataset/Case 13/C13Aceto (5).png,True,aceto,1,0,data/masks/case013_C13Aceto_(5).png,True,train
+13,annocerv_raw/dataset/Case 13/C13Iod (1).jpg,,False,iodine_or_green,1,0,,,train
+13,annocerv_raw/dataset/Case 13/C13Iod (2).jpg,,False,iodine_or_green,1,0,,,train
+13,annocerv_raw/dataset/Case 13/C13Iod (3).jpg,,False,iodine_or_green,1,0,,,train
+13,annocerv_raw/dataset/Case 13/C13Iod (4).jpg,,False,iodine_or_green,1,0,,,train
+14,annocerv_raw/dataset/Case 14/C14Aceto (1).jpg,annocerv_raw/dataset/Case 14/C14Aceto (1).png,True,aceto,5,1,data/masks/case014_C14Aceto_(1).png,False,train
+14,annocerv_raw/dataset/Case 14/C14Aceto (2).jpg,annocerv_raw/dataset/Case 14/C14Aceto (2).png,True,aceto,5,1,data/masks/case014_C14Aceto_(2).png,False,train
+14,annocerv_raw/dataset/Case 14/C14Green (1).jpg,,False,iodine_or_green,5,1,,,train
+14,annocerv_raw/dataset/Case 14/C14Green (2).jpg,,False,iodine_or_green,5,1,,,train
+14,annocerv_raw/dataset/Case 14/C14Green (3).jpg,,False,iodine_or_green,5,1,,,train
+14,annocerv_raw/dataset/Case 14/C14Iod (1).jpg,,False,iodine_or_green,5,1,,,train
+14,annocerv_raw/dataset/Case 14/C14Iod (2).jpg,,False,iodine_or_green,5,1,,,train
+14,annocerv_raw/dataset/Case 14/C14Iod (3).jpg,,False,iodine_or_green,5,1,,,train
+14,annocerv_raw/dataset/Case 14/C14Iod (4).jpg,,False,iodine_or_green,5,1,,,train
+15,annocerv_raw/dataset/Case 15/C15Aceto (1).jpg,annocerv_raw/dataset/Case 15/C15Aceto (1).png,True,aceto,5,1,data/masks/case015_C15Aceto_(1).png,False,train
+15,annocerv_raw/dataset/Case 15/C15Aceto (2).jpg,annocerv_raw/dataset/Case 15/C15Aceto (2).png,True,aceto,5,1,data/masks/case015_C15Aceto_(2).png,False,train
+15,annocerv_raw/dataset/Case 15/C15Aceto (3).jpg,annocerv_raw/dataset/Case 15/C15Aceto (3).png,True,aceto,5,1,data/masks/case015_C15Aceto_(3).png,False,train
+15,annocerv_raw/dataset/Case 15/C15Aceto (4).jpg,annocerv_raw/dataset/Case 15/C15Aceto (4).png,True,aceto,5,1,data/masks/case015_C15Aceto_(4).png,False,train
+15,annocerv_raw/dataset/Case 15/C15Aceto (5).jpg,annocerv_raw/dataset/Case 15/C15Aceto (5).png,True,aceto,5,1,data/masks/case015_C15Aceto_(5).png,False,train
+15,annocerv_raw/dataset/Case 15/C15Iod (1).jpg,,False,iodine_or_green,5,1,,,train
+15,annocerv_raw/dataset/Case 15/C15Iod (2).jpg,,False,iodine_or_green,5,1,,,train
+15,annocerv_raw/dataset/Case 15/C15Iod (3).jpg,,False,iodine_or_green,5,1,,,train
+16,annocerv_raw/dataset/Case 16/C16Aceto (1).jpg,annocerv_raw/dataset/Case 16/C16Aceto (1).png,True,aceto,7,1,data/masks/case016_C16Aceto_(1).png,False,train
+16,annocerv_raw/dataset/Case 16/C16Aceto (2).jpg,annocerv_raw/dataset/Case 16/C16Aceto (2).png,True,aceto,7,1,data/masks/case016_C16Aceto_(2).png,False,train
+16,annocerv_raw/dataset/Case 16/C16Aceto (3).jpg,annocerv_raw/dataset/Case 16/C16Aceto (3).png,True,aceto,7,1,data/masks/case016_C16Aceto_(3).png,False,train
+16,annocerv_raw/dataset/Case 16/C16Aceto (4).jpg,annocerv_raw/dataset/Case 16/C16Aceto (4).png,True,aceto,7,1,data/masks/case016_C16Aceto_(4).png,False,train
+16,annocerv_raw/dataset/Case 16/C16Aceto (5).jpg,annocerv_raw/dataset/Case 16/C16Aceto (5).png,True,aceto,7,1,data/masks/case016_C16Aceto_(5).png,False,train
+16,annocerv_raw/dataset/Case 16/C16Aceto (6).jpg,annocerv_raw/dataset/Case 16/C16Aceto (6).png,True,aceto,7,1,data/masks/case016_C16Aceto_(6).png,False,train
+16,annocerv_raw/dataset/Case 16/C16Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+16,annocerv_raw/dataset/Case 16/C16Iod (2).jpg,,False,iodine_or_green,7,1,,,train
+16,annocerv_raw/dataset/Case 16/C16Iod (3).jpg,,False,iodine_or_green,7,1,,,train
+16,annocerv_raw/dataset/Case 16/C16Iod (4).jpg,,False,iodine_or_green,7,1,,,train
+17,annocerv_raw/dataset/Case 17/C17Aceto (1).jpg,annocerv_raw/dataset/Case 17/C17Aceto (1).png,True,aceto,4,0,data/masks/case017_C17Aceto_(1).png,False,train
+17,annocerv_raw/dataset/Case 17/C17Aceto (2).jpg,annocerv_raw/dataset/Case 17/C17Aceto (2).png,True,aceto,4,0,data/masks/case017_C17Aceto_(2).png,False,train
+17,annocerv_raw/dataset/Case 17/C17Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+17,annocerv_raw/dataset/Case 17/C17Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+18,annocerv_raw/dataset/Case 18/C18Aceto (1).jpg,annocerv_raw/dataset/Case 18/C18Aceto (1).png,True,aceto,3,0,data/masks/case018_C18Aceto_(1).png,True,train
+18,annocerv_raw/dataset/Case 18/C18Aceto (2).jpg,annocerv_raw/dataset/Case 18/C18Aceto (2).png,True,aceto,3,0,data/masks/case018_C18Aceto_(2).png,True,train
+18,annocerv_raw/dataset/Case 18/C18Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+18,annocerv_raw/dataset/Case 18/C18Iod (2).jpg,,False,iodine_or_green,3,0,,,train
+19,annocerv_raw/dataset/Case 19/C19Aceto (1).jpg,annocerv_raw/dataset/Case 19/C19Aceto (1).png,True,aceto,6,1,data/masks/case019_C19Aceto_(1).png,False,train
+19,annocerv_raw/dataset/Case 19/C19Aceto (2).jpg,annocerv_raw/dataset/Case 19/C19Aceto (2).png,True,aceto,6,1,data/masks/case019_C19Aceto_(2).png,False,train
+19,annocerv_raw/dataset/Case 19/C19Aceto (3).jpg,annocerv_raw/dataset/Case 19/C19Aceto (3).png,True,aceto,6,1,data/masks/case019_C19Aceto_(3).png,False,train
+19,annocerv_raw/dataset/Case 19/C19Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+19,annocerv_raw/dataset/Case 19/C19Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+19,annocerv_raw/dataset/Case 19/C19Iod (3).jpg,,False,iodine_or_green,6,1,,,train
+20,annocerv_raw/dataset/Case 20/C20Aceto (1).jpg,annocerv_raw/dataset/Case 20/C20Aceto (1).png,True,aceto,4,0,data/masks/case020_C20Aceto_(1).png,False,train
+20,annocerv_raw/dataset/Case 20/C20Aceto (2).jpg,annocerv_raw/dataset/Case 20/C20Aceto (2).png,True,aceto,4,0,data/masks/case020_C20Aceto_(2).png,False,train
+20,annocerv_raw/dataset/Case 20/C20Aceto (3).jpg,annocerv_raw/dataset/Case 20/C20Aceto (3).png,True,aceto,4,0,data/masks/case020_C20Aceto_(3).png,False,train
+21,annocerv_raw/dataset/Case 21/C21Aceto (1).jpg,annocerv_raw/dataset/Case 21/C21Aceto (1).png,True,aceto,6,1,data/masks/case021_C21Aceto_(1).png,False,train
+21,annocerv_raw/dataset/Case 21/C21Aceto (2).jpg,annocerv_raw/dataset/Case 21/C21Aceto (2).png,True,aceto,6,1,data/masks/case021_C21Aceto_(2).png,False,train
+21,annocerv_raw/dataset/Case 21/C21Aceto (3).jpg,annocerv_raw/dataset/Case 21/C21Aceto (3).png,True,aceto,6,1,data/masks/case021_C21Aceto_(3).png,False,train
+21,annocerv_raw/dataset/Case 21/C21Aceto (4).jpg,annocerv_raw/dataset/Case 21/C21Aceto (4).png,True,aceto,6,1,data/masks/case021_C21Aceto_(4).png,False,train
+21,annocerv_raw/dataset/Case 21/C21Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+21,annocerv_raw/dataset/Case 21/C21Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+22,annocerv_raw/dataset/Case 22/C22Aceto (1).jpg,annocerv_raw/dataset/Case 22/C22Aceto (1).png,True,aceto,4,0,data/masks/case022_C22Aceto_(1).png,False,train
+22,annocerv_raw/dataset/Case 22/C22Aceto (2).jpg,annocerv_raw/dataset/Case 22/C22Aceto (2).png,True,aceto,4,0,data/masks/case022_C22Aceto_(2).png,False,train
+22,annocerv_raw/dataset/Case 22/C22Aceto (3).jpg,annocerv_raw/dataset/Case 22/C22Aceto (3).png,True,aceto,4,0,data/masks/case022_C22Aceto_(3).png,False,train
+22,annocerv_raw/dataset/Case 22/C22Aceto (4).jpg,annocerv_raw/dataset/Case 22/C22Aceto (4).png,True,aceto,4,0,data/masks/case022_C22Aceto_(4).png,False,train
+22,annocerv_raw/dataset/Case 22/C22Aceto (5).jpg,annocerv_raw/dataset/Case 22/C22Aceto (5).png,True,aceto,4,0,data/masks/case022_C22Aceto_(5).png,False,train
+22,annocerv_raw/dataset/Case 22/C22Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+22,annocerv_raw/dataset/Case 22/C22Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+22,annocerv_raw/dataset/Case 22/C22Iod (3).jpg,,False,iodine_or_green,4,0,,,train
+23,annocerv_raw/dataset/Case 23/C23Aceto (1).jpg,annocerv_raw/dataset/Case 23/C23Aceto (1).png,True,aceto,0,0,data/masks/case023_C23Aceto_(1).png,True,val
+23,annocerv_raw/dataset/Case 23/C23Aceto (2).jpg,annocerv_raw/dataset/Case 23/C23Aceto (2).png,True,aceto,0,0,data/masks/case023_C23Aceto_(2).png,True,val
+23,annocerv_raw/dataset/Case 23/C23Aceto (3).jpg,annocerv_raw/dataset/Case 23/C23Aceto (3).png,True,aceto,0,0,data/masks/case023_C23Aceto_(3).png,True,val
+23,annocerv_raw/dataset/Case 23/C23Iod (1).jpg,,False,iodine_or_green,0,0,,,val
+23,annocerv_raw/dataset/Case 23/C23Iod (2).jpg,,False,iodine_or_green,0,0,,,val
+24,annocerv_raw/dataset/Case 24/C24Aceto (1).jpg,annocerv_raw/dataset/Case 24/C24Aceto (1).png,True,aceto,3,0,data/masks/case024_C24Aceto_(1).png,False,test
+24,annocerv_raw/dataset/Case 24/C24Aceto (2).jpg,annocerv_raw/dataset/Case 24/C24Aceto (2).png,True,aceto,3,0,data/masks/case024_C24Aceto_(2).png,False,test
+24,annocerv_raw/dataset/Case 24/C24Aceto (3).jpg,annocerv_raw/dataset/Case 24/C24Aceto (3).png,True,aceto,3,0,data/masks/case024_C24Aceto_(3).png,False,test
+24,annocerv_raw/dataset/Case 24/C24Iod (1).jpg,,False,iodine_or_green,3,0,,,test
+24,annocerv_raw/dataset/Case 24/C24Iod (2).jpg,,False,iodine_or_green,3,0,,,test
+24,annocerv_raw/dataset/Case 24/C24Iod (3).jpg,,False,iodine_or_green,3,0,,,test
+25,annocerv_raw/dataset/Case 25/C25Aceto (1).jpg,annocerv_raw/dataset/Case 25/C25Aceto (1).png,True,aceto,4,0,data/masks/case025_C25Aceto_(1).png,False,train
+25,annocerv_raw/dataset/Case 25/C25Aceto (2).jpg,annocerv_raw/dataset/Case 25/C25Aceto (2).png,True,aceto,4,0,data/masks/case025_C25Aceto_(2).png,False,train
+25,annocerv_raw/dataset/Case 25/C25Aceto (3).jpg,annocerv_raw/dataset/Case 25/C25Aceto (3).png,True,aceto,4,0,data/masks/case025_C25Aceto_(3).png,False,train
+25,annocerv_raw/dataset/Case 25/C25Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+25,annocerv_raw/dataset/Case 25/C25Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+26,annocerv_raw/dataset/Case 26/C26Aceto (1).jpg,annocerv_raw/dataset/Case 26/C26Aceto (1).png,True,aceto,3,0,data/masks/case026_C26Aceto_(1).png,False,train
+26,annocerv_raw/dataset/Case 26/C26Aceto (2).jpg,annocerv_raw/dataset/Case 26/C26Aceto (2).png,True,aceto,3,0,data/masks/case026_C26Aceto_(2).png,False,train
+26,annocerv_raw/dataset/Case 26/C26Aceto (3).jpg,annocerv_raw/dataset/Case 26/C26Aceto (3).png,True,aceto,3,0,data/masks/case026_C26Aceto_(3).png,False,train
+26,annocerv_raw/dataset/Case 26/C26Aceto (4).jpg,annocerv_raw/dataset/Case 26/C26Aceto (4).png,True,aceto,3,0,data/masks/case026_C26Aceto_(4).png,False,train
+26,annocerv_raw/dataset/Case 26/C26Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+26,annocerv_raw/dataset/Case 26/C26Iod (2).jpg,,False,iodine_or_green,3,0,,,train
+26,annocerv_raw/dataset/Case 26/C26Iod (3).jpg,,False,iodine_or_green,3,0,,,train
+26,annocerv_raw/dataset/Case 26/C26Iod (4).jpg,,False,iodine_or_green,3,0,,,train
+27,annocerv_raw/dataset/Case 27/C27Aceto (1).jpg,annocerv_raw/dataset/Case 27/C27Aceto (1).png,True,aceto,4,0,data/masks/case027_C27Aceto_(1).png,False,train
+27,annocerv_raw/dataset/Case 27/C27Aceto (2).jpg,annocerv_raw/dataset/Case 27/C27Aceto (2).png,True,aceto,4,0,data/masks/case027_C27Aceto_(2).png,False,train
+27,annocerv_raw/dataset/Case 27/C27Aceto (3).jpg,annocerv_raw/dataset/Case 27/C27Aceto (3).png,True,aceto,4,0,data/masks/case027_C27Aceto_(3).png,False,train
+27,annocerv_raw/dataset/Case 27/C27Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+27,annocerv_raw/dataset/Case 27/C27Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+28,annocerv_raw/dataset/Case 28/C28Aceto (1).jpg,annocerv_raw/dataset/Case 28/C28Aceto (1).png,True,aceto,1,0,data/masks/case028_C28Aceto_(1).png,False,test
+28,annocerv_raw/dataset/Case 28/C28Aceto (2).jpg,annocerv_raw/dataset/Case 28/C28Aceto (2).png,True,aceto,1,0,data/masks/case028_C28Aceto_(2).png,False,test
+28,annocerv_raw/dataset/Case 28/C28Aceto (3).jpg,annocerv_raw/dataset/Case 28/C28Aceto (3).png,True,aceto,1,0,data/masks/case028_C28Aceto_(3).png,False,test
+28,annocerv_raw/dataset/Case 28/C28Aceto (4).jpg,annocerv_raw/dataset/Case 28/C28Aceto (4).png,True,aceto,1,0,data/masks/case028_C28Aceto_(4).png,False,test
+28,annocerv_raw/dataset/Case 28/C28Iod (1).jpg,,False,iodine_or_green,1,0,,,test
+28,annocerv_raw/dataset/Case 28/C28Iod (2).jpg,,False,iodine_or_green,1,0,,,test
+29,annocerv_raw/dataset/Case 29/C29Aceto (1).jpg,annocerv_raw/dataset/Case 29/C29Aceto (1).png,True,aceto,6,1,data/masks/case029_C29Aceto_(1).png,False,val
+29,annocerv_raw/dataset/Case 29/C29Aceto (2).jpg,annocerv_raw/dataset/Case 29/C29Aceto (2).png,True,aceto,6,1,data/masks/case029_C29Aceto_(2).png,False,val
+29,annocerv_raw/dataset/Case 29/C29Aceto (3).jpg,annocerv_raw/dataset/Case 29/C29Aceto (3).png,True,aceto,6,1,data/masks/case029_C29Aceto_(3).png,False,val
+29,annocerv_raw/dataset/Case 29/C29Iod (1).jpg,,False,iodine_or_green,6,1,,,val
+29,annocerv_raw/dataset/Case 29/C29Iod (2).jpg,,False,iodine_or_green,6,1,,,val
+30,annocerv_raw/dataset/Case 30/C30Aceto (1).jpg,annocerv_raw/dataset/Case 30/C30Aceto (1).png,True,aceto,2,0,data/masks/case030_C30Aceto_(1).png,False,train
+30,annocerv_raw/dataset/Case 30/C30Aceto (2).jpg,annocerv_raw/dataset/Case 30/C30Aceto (2).png,True,aceto,2,0,data/masks/case030_C30Aceto_(2).png,False,train
+30,annocerv_raw/dataset/Case 30/C30Iod (1).jpg,,False,iodine_or_green,2,0,,,train
+31,annocerv_raw/dataset/Case 31/C31Aceto (1).jpg,annocerv_raw/dataset/Case 31/C31Aceto (1).png,True,aceto,4,0,data/masks/case031_C31Aceto_(1).png,False,test
+31,annocerv_raw/dataset/Case 31/C31Aceto (2).jpg,annocerv_raw/dataset/Case 31/C31Aceto (2).png,True,aceto,4,0,data/masks/case031_C31Aceto_(2).png,False,test
+31,annocerv_raw/dataset/Case 31/C31Aceto (3).jpg,annocerv_raw/dataset/Case 31/C31Aceto (3).png,True,aceto,4,0,data/masks/case031_C31Aceto_(3).png,False,test
+31,annocerv_raw/dataset/Case 31/C31Aceto (4).jpg,annocerv_raw/dataset/Case 31/C31Aceto (4).png,True,aceto,4,0,data/masks/case031_C31Aceto_(4).png,False,test
+31,annocerv_raw/dataset/Case 31/C31Aceto (5).jpg,annocerv_raw/dataset/Case 31/C31Aceto (5).png,True,aceto,4,0,data/masks/case031_C31Aceto_(5).png,False,test
+31,annocerv_raw/dataset/Case 31/C31Green (1).jpg,,False,iodine_or_green,4,0,,,test
+31,annocerv_raw/dataset/Case 31/C31Green (2).jpg,,False,iodine_or_green,4,0,,,test
+31,annocerv_raw/dataset/Case 31/C31Iod (1).jpg,,False,iodine_or_green,4,0,,,test
+31,annocerv_raw/dataset/Case 31/C31Iod (2).jpg,,False,iodine_or_green,4,0,,,test
+31,annocerv_raw/dataset/Case 31/C31Iod (3).jpg,,False,iodine_or_green,4,0,,,test
+32,annocerv_raw/dataset/Case 32/C32Aceto (1).jpg,annocerv_raw/dataset/Case 32/C32Aceto (1).png,True,aceto,0,0,data/masks/case032_C32Aceto_(1).png,False,train
+32,annocerv_raw/dataset/Case 32/C32Aceto (2).jpg,annocerv_raw/dataset/Case 32/C32Aceto (2).png,True,aceto,0,0,data/masks/case032_C32Aceto_(2).png,False,train
+32,annocerv_raw/dataset/Case 32/C32Aceto (3).jpg,annocerv_raw/dataset/Case 32/C32Aceto (3).png,True,aceto,0,0,data/masks/case032_C32Aceto_(3).png,False,train
+32,annocerv_raw/dataset/Case 32/C32Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+32,annocerv_raw/dataset/Case 32/C32Iod (2).jpg,,False,iodine_or_green,0,0,,,train
+32,annocerv_raw/dataset/Case 32/C32Iod (3).jpg,,False,iodine_or_green,0,0,,,train
+33,annocerv_raw/dataset/Case 33/C33Aceto (1).jpg,annocerv_raw/dataset/Case 33/C33Aceto (1).png,True,aceto,7,1,data/masks/case033_C33Aceto_(1).png,False,train
+33,annocerv_raw/dataset/Case 33/C33Aceto (2).jpg,annocerv_raw/dataset/Case 33/C33Aceto (2).png,True,aceto,7,1,data/masks/case033_C33Aceto_(2).png,False,train
+33,annocerv_raw/dataset/Case 33/C33Aceto (3).jpg,annocerv_raw/dataset/Case 33/C33Aceto (3).png,True,aceto,7,1,data/masks/case033_C33Aceto_(3).png,False,train
+33,annocerv_raw/dataset/Case 33/C33Aceto (4).jpg,annocerv_raw/dataset/Case 33/C33Aceto (4).png,True,aceto,7,1,data/masks/case033_C33Aceto_(4).png,False,train
+33,annocerv_raw/dataset/Case 33/C33Aceto (5).jpg,annocerv_raw/dataset/Case 33/C33Aceto (5).png,True,aceto,7,1,data/masks/case033_C33Aceto_(5).png,False,train
+33,annocerv_raw/dataset/Case 33/C33Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+33,annocerv_raw/dataset/Case 33/C33Iod (2).jpg,,False,iodine_or_green,7,1,,,train
+33,annocerv_raw/dataset/Case 33/C33Iod (3).jpg,,False,iodine_or_green,7,1,,,train
+34,annocerv_raw/dataset/Case 34/C34Aceto (1).jpg,annocerv_raw/dataset/Case 34/C34Aceto (1).png,True,aceto,6,1,data/masks/case034_C34Aceto_(1).png,False,train
+34,annocerv_raw/dataset/Case 34/C34Aceto (2).jpg,annocerv_raw/dataset/Case 34/C34Aceto (2).png,True,aceto,6,1,data/masks/case034_C34Aceto_(2).png,False,train
+34,annocerv_raw/dataset/Case 34/C34Aceto (3).jpg,annocerv_raw/dataset/Case 34/C34Aceto (3).png,True,aceto,6,1,data/masks/case034_C34Aceto_(3).png,False,train
+34,annocerv_raw/dataset/Case 34/C34Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+34,annocerv_raw/dataset/Case 34/C34Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+35,annocerv_raw/dataset/Case 35/C35Aceto (1).jpg,annocerv_raw/dataset/Case 35/C35Aceto (1).png,True,aceto,5,1,data/masks/case035_C35Aceto_(1).png,False,train
+35,annocerv_raw/dataset/Case 35/C35Green (1).jpg,,False,iodine_or_green,5,1,,,train
+35,annocerv_raw/dataset/Case 35/C35Green (2).jpg,,False,iodine_or_green,5,1,,,train
+35,annocerv_raw/dataset/Case 35/C35Iod (1).jpg,,False,iodine_or_green,5,1,,,train
+35,annocerv_raw/dataset/Case 35/C35Iod (2).jpg,,False,iodine_or_green,5,1,,,train
+36,annocerv_raw/dataset/Case 36/C36Aceto (1).jpg,annocerv_raw/dataset/Case 36/C36Aceto (1).png,True,aceto,0,0,data/masks/case036_C36Aceto_(1).png,True,train
+36,annocerv_raw/dataset/Case 36/C36Aceto (2).jpg,annocerv_raw/dataset/Case 36/C36Aceto (2).png,True,aceto,0,0,data/masks/case036_C36Aceto_(2).png,True,train
+36,annocerv_raw/dataset/Case 36/C36Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+36,annocerv_raw/dataset/Case 36/C36Iod (2).jpg,,False,iodine_or_green,0,0,,,train
+37,annocerv_raw/dataset/Case 37/C37Aceto (1).jpg,annocerv_raw/dataset/Case 37/C37Aceto (1).png,True,aceto,1,0,data/masks/case037_C37Aceto_(1).png,True,train
+37,annocerv_raw/dataset/Case 37/C37Aceto (2).jpg,annocerv_raw/dataset/Case 37/C37Aceto (2).png,True,aceto,1,0,data/masks/case037_C37Aceto_(2).png,True,train
+37,annocerv_raw/dataset/Case 37/C37Iod (1).jpg,,False,iodine_or_green,1,0,,,train
+38,annocerv_raw/dataset/Case 38/C38Aceto (1).jpg,annocerv_raw/dataset/Case 38/C38Aceto (1).png,True,aceto,0,0,data/masks/case038_C38Aceto_(1).png,True,val
+38,annocerv_raw/dataset/Case 38/C38Aceto (2).jpg,annocerv_raw/dataset/Case 38/C38Aceto (2).png,True,aceto,0,0,data/masks/case038_C38Aceto_(2).png,True,val
+38,annocerv_raw/dataset/Case 38/C38Iod (1).jpg,,False,iodine_or_green,0,0,,,val
+38,annocerv_raw/dataset/Case 38/C38Iod (2).jpg,,False,iodine_or_green,0,0,,,val
+39,annocerv_raw/dataset/Case 39/C39Aceto (1).jpg,annocerv_raw/dataset/Case 39/C39Aceto (1).png,True,aceto,0,0,data/masks/case039_C39Aceto_(1).png,True,train
+39,annocerv_raw/dataset/Case 39/C39Aceto (2).jpg,annocerv_raw/dataset/Case 39/C39Aceto (2).png,True,aceto,0,0,data/masks/case039_C39Aceto_(2).png,True,train
+39,annocerv_raw/dataset/Case 39/C39Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+39,annocerv_raw/dataset/Case 39/C39Iod (2).jpg,,False,iodine_or_green,0,0,,,train
+39,annocerv_raw/dataset/Case 39/C39Iod (3).jpg,,False,iodine_or_green,0,0,,,train
+40,annocerv_raw/dataset/Case 40/C40Aceto (1).jpg,annocerv_raw/dataset/Case 40/C40Aceto (1).png,True,aceto,3,0,data/masks/case040_C40Aceto_(1).png,False,train
+40,annocerv_raw/dataset/Case 40/C40Aceto (2).jpg,annocerv_raw/dataset/Case 40/C40Aceto (2).png,True,aceto,3,0,data/masks/case040_C40Aceto_(2).png,False,train
+40,annocerv_raw/dataset/Case 40/C40Aceto (3).jpg,annocerv_raw/dataset/Case 40/C40Aceto (3).png,True,aceto,3,0,data/masks/case040_C40Aceto_(3).png,False,train
+40,annocerv_raw/dataset/Case 40/C40Aceto (4).jpg,annocerv_raw/dataset/Case 40/C40Aceto (4).png,True,aceto,3,0,data/masks/case040_C40Aceto_(4).png,False,train
+40,annocerv_raw/dataset/Case 40/C40Aceto (5).jpg,annocerv_raw/dataset/Case 40/C40Aceto (5).png,True,aceto,3,0,data/masks/case040_C40Aceto_(5).png,False,train
+40,annocerv_raw/dataset/Case 40/C40Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+40,annocerv_raw/dataset/Case 40/C40Iod (2).jpg,,False,iodine_or_green,3,0,,,train
+40,annocerv_raw/dataset/Case 40/C40Iod (3).jpg,,False,iodine_or_green,3,0,,,train
+40,annocerv_raw/dataset/Case 40/C40Iod (4).jpg,,False,iodine_or_green,3,0,,,train
+41,annocerv_raw/dataset/Case 41/C41Aceto (1).jpg,annocerv_raw/dataset/Case 41/C41Aceto (1).png,True,aceto,3,0,data/masks/case041_C41Aceto_(1).png,False,train
+41,annocerv_raw/dataset/Case 41/C41Aceto (2).jpg,annocerv_raw/dataset/Case 41/C41Aceto (2).png,True,aceto,3,0,data/masks/case041_C41Aceto_(2).png,False,train
+41,annocerv_raw/dataset/Case 41/C41Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+41,annocerv_raw/dataset/Case 41/C41Iod (2).jpg,,False,iodine_or_green,3,0,,,train
+42,annocerv_raw/dataset/Case 42/C42Aceto (1).jpg,annocerv_raw/dataset/Case 42/C42Aceto (1).png,True,aceto,4,0,data/masks/case042_C42Aceto_(1).png,False,test
+42,annocerv_raw/dataset/Case 42/C42Aceto (2).jpg,annocerv_raw/dataset/Case 42/C42Aceto (2).png,True,aceto,4,0,data/masks/case042_C42Aceto_(2).png,False,test
+42,annocerv_raw/dataset/Case 42/C42Aceto (3).jpg,annocerv_raw/dataset/Case 42/C42Aceto (3).png,True,aceto,4,0,data/masks/case042_C42Aceto_(3).png,False,test
+42,annocerv_raw/dataset/Case 42/C42Aceto (4).jpg,annocerv_raw/dataset/Case 42/C42Aceto (4).png,True,aceto,4,0,data/masks/case042_C42Aceto_(4).png,False,test
+42,annocerv_raw/dataset/Case 42/C42Iod (1).jpg,,False,iodine_or_green,4,0,,,test
+43,annocerv_raw/dataset/Case 43/C43Aceto (1).jpg,annocerv_raw/dataset/Case 43/C43Aceto (1).png,True,aceto,3,0,data/masks/case043_C43Aceto_(1).png,False,train
+43,annocerv_raw/dataset/Case 43/C43Aceto (2).jpg,annocerv_raw/dataset/Case 43/C43Aceto (2).png,True,aceto,3,0,data/masks/case043_C43Aceto_(2).png,False,train
+43,annocerv_raw/dataset/Case 43/C43Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+44,annocerv_raw/dataset/Case 44/C44Aceto (1).jpg,annocerv_raw/dataset/Case 44/C44Aceto (1).png,True,aceto,9,1,data/masks/case044_C44Aceto_(1).png,False,test
+44,annocerv_raw/dataset/Case 44/C44Aceto (2).jpg,annocerv_raw/dataset/Case 44/C44Aceto (2).png,True,aceto,9,1,data/masks/case044_C44Aceto_(2).png,False,test
+44,annocerv_raw/dataset/Case 44/C44Aceto (3).jpg,annocerv_raw/dataset/Case 44/C44Aceto (3).png,True,aceto,9,1,data/masks/case044_C44Aceto_(3).png,False,test
+44,annocerv_raw/dataset/Case 44/C44Iod (1).jpg,,False,iodine_or_green,9,1,,,test
+45,annocerv_raw/dataset/Case 45/C45Aceto (1).jpg,annocerv_raw/dataset/Case 45/C45Aceto (1).png,True,aceto,4,0,data/masks/case045_C45Aceto_(1).png,False,val
+45,annocerv_raw/dataset/Case 45/C45Aceto (2).jpg,annocerv_raw/dataset/Case 45/C45Aceto (2).png,True,aceto,4,0,data/masks/case045_C45Aceto_(2).png,False,val
+46,annocerv_raw/dataset/Case 46/C46Aceto (1).jpg,annocerv_raw/dataset/Case 46/C46Aceto (1).png,True,aceto,4,0,data/masks/case046_C46Aceto_(1).png,True,val
+46,annocerv_raw/dataset/Case 46/C46Aceto (2).jpg,annocerv_raw/dataset/Case 46/C46Aceto (2).png,True,aceto,4,0,data/masks/case046_C46Aceto_(2).png,True,val
+46,annocerv_raw/dataset/Case 46/C46Iod (1).jpg,,False,iodine_or_green,4,0,,,val
+46,annocerv_raw/dataset/Case 46/C46Iod (2).jpg,,False,iodine_or_green,4,0,,,val
+47,annocerv_raw/dataset/Case 47/C47Aceto (1).jpg,annocerv_raw/dataset/Case 47/C47Aceto (1).png,True,aceto,0,0,data/masks/case047_C47Aceto_(1).png,True,train
+47,annocerv_raw/dataset/Case 47/C47Aceto (2).jpg,annocerv_raw/dataset/Case 47/C47Aceto (2).png,True,aceto,0,0,data/masks/case047_C47Aceto_(2).png,True,train
+47,annocerv_raw/dataset/Case 47/C47Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+48,annocerv_raw/dataset/Case 48/C48Aceto (1).jpg,annocerv_raw/dataset/Case 48/C48Aceto (1).png,True,aceto,7,1,data/masks/case048_C48Aceto_(1).png,False,train
+48,annocerv_raw/dataset/Case 48/C48Aceto (2).jpg,annocerv_raw/dataset/Case 48/C48Aceto (2).png,True,aceto,7,1,data/masks/case048_C48Aceto_(2).png,False,train
+48,annocerv_raw/dataset/Case 48/C48Aceto (3).jpg,annocerv_raw/dataset/Case 48/C48Aceto (3).png,True,aceto,7,1,data/masks/case048_C48Aceto_(3).png,False,train
+48,annocerv_raw/dataset/Case 48/C48Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+48,annocerv_raw/dataset/Case 48/C48Iod (2).jpg,,False,iodine_or_green,7,1,,,train
+48,annocerv_raw/dataset/Case 48/C48Iod (3).jpg,,False,iodine_or_green,7,1,,,train
+49,annocerv_raw/dataset/Case 49/C49Aceto (1).jpg,annocerv_raw/dataset/Case 49/C49Aceto (1).png,True,aceto,4,0,data/masks/case049_C49Aceto_(1).png,False,train
+49,annocerv_raw/dataset/Case 49/C49Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+50,annocerv_raw/dataset/Case 50/C50Aceto (1).jpg,annocerv_raw/dataset/Case 50/C50Aceto (1).png,True,aceto,6,1,data/masks/case050_C50Aceto_(1).png,False,train
+50,annocerv_raw/dataset/Case 50/C50Aceto (2).jpg,annocerv_raw/dataset/Case 50/C50Aceto (2).png,True,aceto,6,1,data/masks/case050_C50Aceto_(2).png,False,train
+50,annocerv_raw/dataset/Case 50/C50Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+51,annocerv_raw/dataset/Case 51/C51Aceto (1).jpg,annocerv_raw/dataset/Case 51/C51Aceto (1).png,True,aceto,4,0,data/masks/case051_C51Aceto_(1).png,True,train
+51,annocerv_raw/dataset/Case 51/C51Aceto (2).jpg,annocerv_raw/dataset/Case 51/C51Aceto (2).png,True,aceto,4,0,data/masks/case051_C51Aceto_(2).png,True,train
+51,annocerv_raw/dataset/Case 51/C51Aceto (3).jpg,annocerv_raw/dataset/Case 51/C51Aceto (3).png,True,aceto,4,0,data/masks/case051_C51Aceto_(3).png,True,train
+51,annocerv_raw/dataset/Case 51/C51Aceto (4).jpg,annocerv_raw/dataset/Case 51/C51Aceto (4).png,True,aceto,4,0,data/masks/case051_C51Aceto_(4).png,True,train
+51,annocerv_raw/dataset/Case 51/C51Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+51,annocerv_raw/dataset/Case 51/C51Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+51,annocerv_raw/dataset/Case 51/C51Iod (3).jpg,,False,iodine_or_green,4,0,,,train
+52,annocerv_raw/dataset/Case 52/C52Aceto (1).jpg,annocerv_raw/dataset/Case 52/C52Aceto (1).png,True,aceto,4,0,data/masks/case052_C52Aceto_(1).png,False,train
+52,annocerv_raw/dataset/Case 52/C52Aceto (2).jpg,annocerv_raw/dataset/Case 52/C52Aceto (2).png,True,aceto,4,0,data/masks/case052_C52Aceto_(2).png,False,train
+52,annocerv_raw/dataset/Case 52/C52Aceto (3).jpg,annocerv_raw/dataset/Case 52/C52Aceto (3).png,True,aceto,4,0,data/masks/case052_C52Aceto_(3).png,False,train
+52,annocerv_raw/dataset/Case 52/C52Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+53,annocerv_raw/dataset/Case 53/C53Aceto (1).jpg,annocerv_raw/dataset/Case 53/C53Aceto (1).png,True,aceto,5,1,data/masks/case053_C53Aceto_(1).png,False,test
+53,annocerv_raw/dataset/Case 53/C53Aceto (2).jpg,annocerv_raw/dataset/Case 53/C53Aceto (2).png,True,aceto,5,1,data/masks/case053_C53Aceto_(2).png,False,test
+53,annocerv_raw/dataset/Case 53/C53Aceto (3).jpg,annocerv_raw/dataset/Case 53/C53Aceto (3).png,True,aceto,5,1,data/masks/case053_C53Aceto_(3).png,False,test
+53,annocerv_raw/dataset/Case 53/C53Aceto (4).jpg,annocerv_raw/dataset/Case 53/C53Aceto (4).png,True,aceto,5,1,data/masks/case053_C53Aceto_(4).png,False,test
+53,annocerv_raw/dataset/Case 53/C53Iod (1).jpg,,False,iodine_or_green,5,1,,,test
+53,annocerv_raw/dataset/Case 53/C53Iod (2).jpg,,False,iodine_or_green,5,1,,,test
+53,annocerv_raw/dataset/Case 53/C53Iod (3).jpg,,False,iodine_or_green,5,1,,,test
+53,annocerv_raw/dataset/Case 53/C53Iod (4).jpg,,False,iodine_or_green,5,1,,,test
+54,annocerv_raw/dataset/Case 54/C54Aceto (1).jpg,annocerv_raw/dataset/Case 54/C54Aceto (1).png,True,aceto,0,0,data/masks/case054_C54Aceto_(1).png,True,train
+54,annocerv_raw/dataset/Case 54/C54Aceto (2).jpg,annocerv_raw/dataset/Case 54/C54Aceto (2).png,True,aceto,0,0,data/masks/case054_C54Aceto_(2).png,True,train
+54,annocerv_raw/dataset/Case 54/C54Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+55,annocerv_raw/dataset/Case 55/C55Aceto (1).jpg,annocerv_raw/dataset/Case 55/C55Aceto (1).png,True,aceto,6,1,data/masks/case055_C55Aceto_(1).png,False,train
+55,annocerv_raw/dataset/Case 55/C55Aceto (2).jpg,annocerv_raw/dataset/Case 55/C55Aceto (2).png,True,aceto,6,1,data/masks/case055_C55Aceto_(2).png,False,train
+55,annocerv_raw/dataset/Case 55/C55Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+55,annocerv_raw/dataset/Case 55/C55Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+56,annocerv_raw/dataset/Case 56/C56Aceto (1).jpg,annocerv_raw/dataset/Case 56/C56Aceto (1).png,True,aceto,5,1,data/masks/case056_C56Aceto_(1).png,False,val
+56,annocerv_raw/dataset/Case 56/C56Aceto (2).jpg,annocerv_raw/dataset/Case 56/C56Aceto (2).png,True,aceto,5,1,data/masks/case056_C56Aceto_(2).png,False,val
+56,annocerv_raw/dataset/Case 56/C56Iod (1).jpg,,False,iodine_or_green,5,1,,,val
+56,annocerv_raw/dataset/Case 56/C56Iod (2).jpg,,False,iodine_or_green,5,1,,,val
+57,annocerv_raw/dataset/Case 57/C57Aceto (1).jpg,annocerv_raw/dataset/Case 57/C57Aceto (1).png,True,aceto,7,1,data/masks/case057_C57Aceto_(1).png,False,train
+57,annocerv_raw/dataset/Case 57/C57Aceto (2).jpg,annocerv_raw/dataset/Case 57/C57Aceto (2).png,True,aceto,7,1,data/masks/case057_C57Aceto_(2).png,False,train
+57,annocerv_raw/dataset/Case 57/C57Aceto (3).jpg,annocerv_raw/dataset/Case 57/C57Aceto (3).png,True,aceto,7,1,data/masks/case057_C57Aceto_(3).png,False,train
+57,annocerv_raw/dataset/Case 57/C57Aceto (4).jpg,annocerv_raw/dataset/Case 57/C57Aceto (4).png,True,aceto,7,1,data/masks/case057_C57Aceto_(4).png,False,train
+57,annocerv_raw/dataset/Case 57/C57Green (1).jpg,,False,iodine_or_green,7,1,,,train
+57,annocerv_raw/dataset/Case 57/C57Green (2).jpg,,False,iodine_or_green,7,1,,,train
+57,annocerv_raw/dataset/Case 57/C57Green (3).jpg,,False,iodine_or_green,7,1,,,train
+57,annocerv_raw/dataset/Case 57/C57Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+58,annocerv_raw/dataset/Case 58/C58Aceto (1).jpg,annocerv_raw/dataset/Case 58/C58Aceto (1).png,True,aceto,4,0,data/masks/case058_C58Aceto_(1).png,False,val
+58,annocerv_raw/dataset/Case 58/C58Aceto (2).jpg,annocerv_raw/dataset/Case 58/C58Aceto (2).png,True,aceto,4,0,data/masks/case058_C58Aceto_(2).png,False,val
+58,annocerv_raw/dataset/Case 58/C58Iod (1).jpg,,False,iodine_or_green,4,0,,,val
+58,annocerv_raw/dataset/Case 58/C58Iod (2).jpg,,False,iodine_or_green,4,0,,,val
+59,annocerv_raw/dataset/Case 59/C59Aceto (1).jpg,annocerv_raw/dataset/Case 59/C59Aceto (1).png,True,aceto,7,1,data/masks/case059_C59Aceto_(1).png,False,train
+59,annocerv_raw/dataset/Case 59/C59Aceto (2).jpg,annocerv_raw/dataset/Case 59/C59Aceto (2).png,True,aceto,7,1,data/masks/case059_C59Aceto_(2).png,False,train
+59,annocerv_raw/dataset/Case 59/C59Aceto (3).jpg,annocerv_raw/dataset/Case 59/C59Aceto (3).png,True,aceto,7,1,data/masks/case059_C59Aceto_(3).png,False,train
+59,annocerv_raw/dataset/Case 59/C59Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+60,annocerv_raw/dataset/Case 60/C60Aceto (1).jpg,annocerv_raw/dataset/Case 60/C60Aceto (1).png,True,aceto,0,0,data/masks/case060_C60Aceto_(1).png,True,test
+60,annocerv_raw/dataset/Case 60/C60Aceto (2).jpg,annocerv_raw/dataset/Case 60/C60Aceto (2).png,True,aceto,0,0,data/masks/case060_C60Aceto_(2).png,True,test
+60,annocerv_raw/dataset/Case 60/C60Aceto (3).jpg,annocerv_raw/dataset/Case 60/C60Aceto (3).png,True,aceto,0,0,data/masks/case060_C60Aceto_(3).png,True,test
+60,annocerv_raw/dataset/Case 60/C60Aceto (4).jpg,annocerv_raw/dataset/Case 60/C60Aceto (4).png,True,aceto,0,0,data/masks/case060_C60Aceto_(4).png,True,test
+60,annocerv_raw/dataset/Case 60/C60Aceto (5).jpg,annocerv_raw/dataset/Case 60/C60Aceto (5).png,True,aceto,0,0,data/masks/case060_C60Aceto_(5).png,True,test
+61,annocerv_raw/dataset/Case 61/C61Aceto (1).jpg,annocerv_raw/dataset/Case 61/C61Aceto (1).png,True,aceto,7,1,data/masks/case061_C61Aceto_(1).png,False,train
+61,annocerv_raw/dataset/Case 61/C61Aceto (2).jpg,annocerv_raw/dataset/Case 61/C61Aceto (2).png,True,aceto,7,1,data/masks/case061_C61Aceto_(2).png,False,train
+61,annocerv_raw/dataset/Case 61/C61Green (1).jpg,,False,iodine_or_green,7,1,,,train
+61,annocerv_raw/dataset/Case 61/C61Green (2).jpg,,False,iodine_or_green,7,1,,,train
+62,annocerv_raw/dataset/Case 62/C62Aceto (1).jpg,annocerv_raw/dataset/Case 62/C62Aceto (1).png,True,aceto,4,0,data/masks/case062_C62Aceto_(1).png,False,train
+62,annocerv_raw/dataset/Case 62/C62Aceto (2).jpg,annocerv_raw/dataset/Case 62/C62Aceto (2).png,True,aceto,4,0,data/masks/case062_C62Aceto_(2).png,False,train
+62,annocerv_raw/dataset/Case 62/C62Aceto (3).jpg,annocerv_raw/dataset/Case 62/C62Aceto (3).png,True,aceto,4,0,data/masks/case062_C62Aceto_(3).png,False,train
+62,annocerv_raw/dataset/Case 62/C62Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+62,annocerv_raw/dataset/Case 62/C62Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+63,annocerv_raw/dataset/Case 63/C63Aceto (1).jpg,annocerv_raw/dataset/Case 63/C63Aceto (1).png,True,aceto,6,1,data/masks/case063_C63Aceto_(1).png,False,train
+63,annocerv_raw/dataset/Case 63/C63Aceto (2).jpg,annocerv_raw/dataset/Case 63/C63Aceto (2).png,True,aceto,6,1,data/masks/case063_C63Aceto_(2).png,False,train
+63,annocerv_raw/dataset/Case 63/C63Aceto (3).jpg,annocerv_raw/dataset/Case 63/C63Aceto (3).png,True,aceto,6,1,data/masks/case063_C63Aceto_(3).png,False,train
+63,annocerv_raw/dataset/Case 63/C63Aceto (4).jpg,annocerv_raw/dataset/Case 63/C63Aceto (4).png,True,aceto,6,1,data/masks/case063_C63Aceto_(4).png,False,train
+63,annocerv_raw/dataset/Case 63/C63Aceto (5).jpg,annocerv_raw/dataset/Case 63/C63Aceto (5).png,True,aceto,6,1,data/masks/case063_C63Aceto_(5).png,False,train
+63,annocerv_raw/dataset/Case 63/C63Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+63,annocerv_raw/dataset/Case 63/C63Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+63,annocerv_raw/dataset/Case 63/C63Iod (3).jpg,,False,iodine_or_green,6,1,,,train
+64,annocerv_raw/dataset/Case 64/C64Aceto (1).jpg,annocerv_raw/dataset/Case 64/C64Aceto (1).png,True,aceto,4,0,data/masks/case064_C64Aceto_(1).png,True,val
+64,annocerv_raw/dataset/Case 64/C64Aceto (2).jpg,annocerv_raw/dataset/Case 64/C64Aceto (2).png,True,aceto,4,0,data/masks/case064_C64Aceto_(2).png,True,val
+64,annocerv_raw/dataset/Case 64/C64Aceto (3).jpg,annocerv_raw/dataset/Case 64/C64Aceto (3).png,True,aceto,4,0,data/masks/case064_C64Aceto_(3).png,True,val
+64,annocerv_raw/dataset/Case 64/C64Green (1).jpg,,False,iodine_or_green,4,0,,,val
+64,annocerv_raw/dataset/Case 64/C64Green (2).jpg,,False,iodine_or_green,4,0,,,val
+64,annocerv_raw/dataset/Case 64/C64Iod (1).jpg,,False,iodine_or_green,4,0,,,val
+65,annocerv_raw/dataset/Case 65/C65Aceto (1).jpg,annocerv_raw/dataset/Case 65/C65Aceto (1).png,True,aceto,4,0,data/masks/case065_C65Aceto_(1).png,False,train
+65,annocerv_raw/dataset/Case 65/C65Aceto (2).jpg,annocerv_raw/dataset/Case 65/C65Aceto (2).png,True,aceto,4,0,data/masks/case065_C65Aceto_(2).png,False,train
+65,annocerv_raw/dataset/Case 65/C65Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+65,annocerv_raw/dataset/Case 65/C65Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+66,annocerv_raw/dataset/Case 66/C66Aceto (1).jpg,annocerv_raw/dataset/Case 66/C66Aceto (1).png,True,aceto,4,0,data/masks/case066_C66Aceto_(1).png,False,test
+66,annocerv_raw/dataset/Case 66/C66Aceto (2).jpg,annocerv_raw/dataset/Case 66/C66Aceto (2).png,True,aceto,4,0,data/masks/case066_C66Aceto_(2).png,False,test
+66,annocerv_raw/dataset/Case 66/C66Aceto (3).jpg,annocerv_raw/dataset/Case 66/C66Aceto (3).png,True,aceto,4,0,data/masks/case066_C66Aceto_(3).png,False,test
+66,annocerv_raw/dataset/Case 66/C66Iod (1).jpg,,False,iodine_or_green,4,0,,,test
+66,annocerv_raw/dataset/Case 66/C66Iod (2).jpg,,False,iodine_or_green,4,0,,,test
+67,annocerv_raw/dataset/Case 67/C67Aceto (1).jpg,annocerv_raw/dataset/Case 67/C67Aceto (1).png,True,aceto,6,1,data/masks/case067_C67Aceto_(1).png,False,train
+67,annocerv_raw/dataset/Case 67/C67Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+67,annocerv_raw/dataset/Case 67/C67Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+68,annocerv_raw/dataset/Case 68/C68Aceto (1).jpg,annocerv_raw/dataset/Case 68/C68Aceto (1).png,True,aceto,7,1,data/masks/case068_C68Aceto_(1).png,False,train
+68,annocerv_raw/dataset/Case 68/C68Aceto (2).jpg,annocerv_raw/dataset/Case 68/C68Aceto (2).png,True,aceto,7,1,data/masks/case068_C68Aceto_(2).png,False,train
+68,annocerv_raw/dataset/Case 68/C68Aceto (3).jpg,annocerv_raw/dataset/Case 68/C68Aceto (3).png,True,aceto,7,1,data/masks/case068_C68Aceto_(3).png,False,train
+68,annocerv_raw/dataset/Case 68/C68Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+68,annocerv_raw/dataset/Case 68/C68Iod (2).jpg,,False,iodine_or_green,7,1,,,train
+68,annocerv_raw/dataset/Case 68/C68Iod (3).jpg,,False,iodine_or_green,7,1,,,train
+69,annocerv_raw/dataset/Case 69/C69Aceto (1).jpg,annocerv_raw/dataset/Case 69/C69Aceto (1).png,True,aceto,5,1,data/masks/case069_C69Aceto_(1).png,False,val
+69,annocerv_raw/dataset/Case 69/C69Aceto (2).jpg,annocerv_raw/dataset/Case 69/C69Aceto (2).png,True,aceto,5,1,data/masks/case069_C69Aceto_(2).png,False,val
+69,annocerv_raw/dataset/Case 69/C69Aceto (3).jpg,annocerv_raw/dataset/Case 69/C69Aceto (3).png,True,aceto,5,1,data/masks/case069_C69Aceto_(3).png,False,val
+69,annocerv_raw/dataset/Case 69/C69Aceto (4).jpg,annocerv_raw/dataset/Case 69/C69Aceto (4).png,True,aceto,5,1,data/masks/case069_C69Aceto_(4).png,False,val
+69,annocerv_raw/dataset/Case 69/C69Aceto (5).jpg,annocerv_raw/dataset/Case 69/C69Aceto (5).png,True,aceto,5,1,data/masks/case069_C69Aceto_(5).png,False,val
+69,annocerv_raw/dataset/Case 69/C69Aceto (6).jpg,annocerv_raw/dataset/Case 69/C69Aceto (6).png,True,aceto,5,1,data/masks/case069_C69Aceto_(6).png,False,val
+69,annocerv_raw/dataset/Case 69/C69Iod (1).jpg,,False,iodine_or_green,5,1,,,val
+69,annocerv_raw/dataset/Case 69/C69Iod (2).jpg,,False,iodine_or_green,5,1,,,val
+69,annocerv_raw/dataset/Case 69/C69Iod (3).jpg,,False,iodine_or_green,5,1,,,val
+69,annocerv_raw/dataset/Case 69/C69Iod (4).jpg,,False,iodine_or_green,5,1,,,val
+70,annocerv_raw/dataset/Case 70/C70Aceto (1).jpg,annocerv_raw/dataset/Case 70/C70Aceto (1).png,True,aceto,2,0,data/masks/case070_C70Aceto_(1).png,False,train
+70,annocerv_raw/dataset/Case 70/C70Aceto (2).jpg,annocerv_raw/dataset/Case 70/C70Aceto (2).png,True,aceto,2,0,data/masks/case070_C70Aceto_(2).png,False,train
+70,annocerv_raw/dataset/Case 70/C70Aceto (3).jpg,annocerv_raw/dataset/Case 70/C70Aceto (3).png,True,aceto,2,0,data/masks/case070_C70Aceto_(3).png,False,train
+70,annocerv_raw/dataset/Case 70/C70Iod (1).jpg,,False,iodine_or_green,2,0,,,train
+70,annocerv_raw/dataset/Case 70/C70Iod (2).jpg,,False,iodine_or_green,2,0,,,train
+71,annocerv_raw/dataset/Case 71/C71Aceto (1).jpg,annocerv_raw/dataset/Case 71/C71Aceto (1).png,True,aceto,10,1,data/masks/case071_C71Aceto_(1).png,False,val
+71,annocerv_raw/dataset/Case 71/C71Aceto (2).jpg,annocerv_raw/dataset/Case 71/C71Aceto (2).png,True,aceto,10,1,data/masks/case071_C71Aceto_(2).png,False,val
+71,annocerv_raw/dataset/Case 71/C71Aceto (3).jpg,annocerv_raw/dataset/Case 71/C71Aceto (3).png,True,aceto,10,1,data/masks/case071_C71Aceto_(3).png,False,val
+71,annocerv_raw/dataset/Case 71/C71Iod (1).jpg,,False,iodine_or_green,10,1,,,val
+71,annocerv_raw/dataset/Case 71/C71Iod (2).jpg,,False,iodine_or_green,10,1,,,val
+71,annocerv_raw/dataset/Case 71/C71Iod (3).jpg,,False,iodine_or_green,10,1,,,val
+72,annocerv_raw/dataset/Case 72/C72Aceto (1).jpg,annocerv_raw/dataset/Case 72/C72Aceto (1).png,True,aceto,7,1,data/masks/case072_C72Aceto_(1).png,False,train
+72,annocerv_raw/dataset/Case 72/C72Green (1).jpg,,False,iodine_or_green,7,1,,,train
+72,annocerv_raw/dataset/Case 72/C72Green (2).jpg,,False,iodine_or_green,7,1,,,train
+72,annocerv_raw/dataset/Case 72/C72Green (3).jpg,,False,iodine_or_green,7,1,,,train
+72,annocerv_raw/dataset/Case 72/C72Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+72,annocerv_raw/dataset/Case 72/C72Iod (2).jpg,,False,iodine_or_green,7,1,,,train
+73,annocerv_raw/dataset/Case 73/C73Aceto (1).jpg,annocerv_raw/dataset/Case 73/C73Aceto (1).png,True,aceto,6,1,data/masks/case073_C73Aceto_(1).png,False,train
+73,annocerv_raw/dataset/Case 73/C73Aceto (2).jpg,annocerv_raw/dataset/Case 73/C73Aceto (2).png,True,aceto,6,1,data/masks/case073_C73Aceto_(2).png,False,train
+73,annocerv_raw/dataset/Case 73/C73Aceto (3).jpg,annocerv_raw/dataset/Case 73/C73Aceto (3).png,True,aceto,6,1,data/masks/case073_C73Aceto_(3).png,False,train
+73,annocerv_raw/dataset/Case 73/C73Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+73,annocerv_raw/dataset/Case 73/C73Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+74,annocerv_raw/dataset/Case 74/C74Aceto (1).jpg,annocerv_raw/dataset/Case 74/C74Aceto (1).png,True,aceto,3,0,data/masks/case074_C74Aceto_(1).png,False,train
+74,annocerv_raw/dataset/Case 74/C74Aceto (2).jpg,annocerv_raw/dataset/Case 74/C74Aceto (2).png,True,aceto,3,0,data/masks/case074_C74Aceto_(2).png,False,train
+74,annocerv_raw/dataset/Case 74/C74Aceto (3).jpg,annocerv_raw/dataset/Case 74/C74Aceto (3).png,True,aceto,3,0,data/masks/case074_C74Aceto_(3).png,False,train
+74,annocerv_raw/dataset/Case 74/C74Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+74,annocerv_raw/dataset/Case 74/C74Iod (2).jpg,,False,iodine_or_green,3,0,,,train
+74,annocerv_raw/dataset/Case 74/C74Iod (3).jpg,,False,iodine_or_green,3,0,,,train
+75,annocerv_raw/dataset/Case 75/C75Aceto (1).jpg,annocerv_raw/dataset/Case 75/C75Aceto (1).png,True,aceto,4,0,data/masks/case075_C75Aceto_(1).png,False,train
+75,annocerv_raw/dataset/Case 75/C75Aceto (2).jpg,annocerv_raw/dataset/Case 75/C75Aceto (2).png,True,aceto,4,0,data/masks/case075_C75Aceto_(2).png,False,train
+75,annocerv_raw/dataset/Case 75/C75Aceto (3).jpg,annocerv_raw/dataset/Case 75/C75Aceto (3).png,True,aceto,4,0,data/masks/case075_C75Aceto_(3).png,False,train
+75,annocerv_raw/dataset/Case 75/C75Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+75,annocerv_raw/dataset/Case 75/C75Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+75,annocerv_raw/dataset/Case 75/C75Iod (3).jpg,,False,iodine_or_green,4,0,,,train
+76,annocerv_raw/dataset/Case 76/C76Aceto (1).jpg,annocerv_raw/dataset/Case 76/C76Aceto (1).png,True,aceto,7,1,data/masks/case076_C76Aceto_(1).png,False,test
+76,annocerv_raw/dataset/Case 76/C76Aceto (2).jpg,annocerv_raw/dataset/Case 76/C76Aceto (2).png,True,aceto,7,1,data/masks/case076_C76Aceto_(2).png,False,test
+76,annocerv_raw/dataset/Case 76/C76Aceto (3).jpg,annocerv_raw/dataset/Case 76/C76Aceto (3).png,True,aceto,7,1,data/masks/case076_C76Aceto_(3).png,False,test
+76,annocerv_raw/dataset/Case 76/C76Green (1).jpg,,False,iodine_or_green,7,1,,,test
+76,annocerv_raw/dataset/Case 76/C76Green (2).jpg,,False,iodine_or_green,7,1,,,test
+76,annocerv_raw/dataset/Case 76/C76Iod (1).jpg,,False,iodine_or_green,7,1,,,test
+76,annocerv_raw/dataset/Case 76/C76Iod (2).jpg,,False,iodine_or_green,7,1,,,test
+76,annocerv_raw/dataset/Case 76/C76Iod (3).jpg,,False,iodine_or_green,7,1,,,test
+77,annocerv_raw/dataset/Case 77/C77Aceto (1).jpg,annocerv_raw/dataset/Case 77/C77Aceto (1).png,True,aceto,0,0,data/masks/case077_C77Aceto_(1).png,True,train
+77,annocerv_raw/dataset/Case 77/C77Aceto (2).jpg,annocerv_raw/dataset/Case 77/C77Aceto (2).png,True,aceto,0,0,data/masks/case077_C77Aceto_(2).png,True,train
+77,annocerv_raw/dataset/Case 77/C77Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+77,annocerv_raw/dataset/Case 77/C77Iod (2).jpg,,False,iodine_or_green,0,0,,,train
+78,annocerv_raw/dataset/Case 78/C78Aceto (1).jpg,annocerv_raw/dataset/Case 78/C78Aceto (1).png,True,aceto,4,0,data/masks/case078_C78Aceto_(1).png,False,train
+78,annocerv_raw/dataset/Case 78/C78Aceto (2).jpg,annocerv_raw/dataset/Case 78/C78Aceto (2).png,True,aceto,4,0,data/masks/case078_C78Aceto_(2).png,False,train
+78,annocerv_raw/dataset/Case 78/C78Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+78,annocerv_raw/dataset/Case 78/C78Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+78,annocerv_raw/dataset/Case 78/C78Iod (3).jpg,,False,iodine_or_green,4,0,,,train
+79,annocerv_raw/dataset/Case 79/C79Aceto (1).jpg,annocerv_raw/dataset/Case 79/C79Aceto (1).png,True,aceto,8,1,data/masks/case079_C79Aceto_(1).png,False,train
+79,annocerv_raw/dataset/Case 79/C79Aceto (2).jpg,annocerv_raw/dataset/Case 79/C79Aceto (2).png,True,aceto,8,1,data/masks/case079_C79Aceto_(2).png,False,train
+79,annocerv_raw/dataset/Case 79/C79Aceto (3).jpg,annocerv_raw/dataset/Case 79/C79Aceto (3).png,True,aceto,8,1,data/masks/case079_C79Aceto_(3).png,False,train
+79,annocerv_raw/dataset/Case 79/C79Aceto (4).jpg,annocerv_raw/dataset/Case 79/C79Aceto (4).png,True,aceto,8,1,data/masks/case079_C79Aceto_(4).png,False,train
+79,annocerv_raw/dataset/Case 79/C79Iod (1).jpg,,False,iodine_or_green,8,1,,,train
+79,annocerv_raw/dataset/Case 79/C79Iod (2).jpg,,False,iodine_or_green,8,1,,,train
+80,annocerv_raw/dataset/Case 80/C80Aceto (1).jpg,annocerv_raw/dataset/Case 80/C80Aceto (1).png,True,aceto,4,0,data/masks/case080_C80Aceto_(1).png,False,val
+80,annocerv_raw/dataset/Case 80/C80Aceto (2).jpg,annocerv_raw/dataset/Case 80/C80Aceto (2).png,True,aceto,4,0,data/masks/case080_C80Aceto_(2).png,True,val
+80,annocerv_raw/dataset/Case 80/C80Aceto (3).jpg,annocerv_raw/dataset/Case 80/C80Aceto (3).png,True,aceto,4,0,data/masks/case080_C80Aceto_(3).png,True,val
+80,annocerv_raw/dataset/Case 80/C80Aceto (4).jpg,annocerv_raw/dataset/Case 80/C80Aceto (4).png,True,aceto,4,0,data/masks/case080_C80Aceto_(4).png,False,val
+80,annocerv_raw/dataset/Case 80/C80Iod (1).jpg,,False,iodine_or_green,4,0,,,val
+81,annocerv_raw/dataset/Case 81/C81Aceto (1).jpg,annocerv_raw/dataset/Case 81/C81Aceto (1).png,True,aceto,7,1,data/masks/case081_C81Aceto_(1).png,False,val
+81,annocerv_raw/dataset/Case 81/C81Aceto (2).jpg,annocerv_raw/dataset/Case 81/C81Aceto (2).png,True,aceto,7,1,data/masks/case081_C81Aceto_(2).png,False,val
+81,annocerv_raw/dataset/Case 81/C81Iod (1).jpg,,False,iodine_or_green,7,1,,,val
+81,annocerv_raw/dataset/Case 81/C81Iod (2).jpg,,False,iodine_or_green,7,1,,,val
+81,annocerv_raw/dataset/Case 81/C81Iod (3).jpg,,False,iodine_or_green,7,1,,,val
+82,annocerv_raw/dataset/Case 82/C82Aceto (1).jpg,annocerv_raw/dataset/Case 82/C82Aceto (1).png,True,aceto,4,0,data/masks/case082_C82Aceto_(1).png,False,train
+82,annocerv_raw/dataset/Case 82/C82Aceto (2).jpg,annocerv_raw/dataset/Case 82/C82Aceto (2).png,True,aceto,4,0,data/masks/case082_C82Aceto_(2).png,False,train
+82,annocerv_raw/dataset/Case 82/C82Aceto (3).jpg,annocerv_raw/dataset/Case 82/C82Aceto (3).png,True,aceto,4,0,data/masks/case082_C82Aceto_(3).png,False,train
+82,annocerv_raw/dataset/Case 82/C82Iod (1).jpg,,False,iodine_or_green,4,0,,,train
+82,annocerv_raw/dataset/Case 82/C82Iod (2).jpg,,False,iodine_or_green,4,0,,,train
+83,annocerv_raw/dataset/Case 83/C83Aceto (1).jpg,annocerv_raw/dataset/Case 83/C83Aceto (1).png,True,aceto,6,1,data/masks/case083_C83Aceto_(1).png,False,val
+83,annocerv_raw/dataset/Case 83/C83Aceto (2).jpg,annocerv_raw/dataset/Case 83/C83Aceto (2).png,True,aceto,6,1,data/masks/case083_C83Aceto_(2).png,False,val
+83,annocerv_raw/dataset/Case 83/C83Green (1).jpg,,False,iodine_or_green,6,1,,,val
+83,annocerv_raw/dataset/Case 83/C83Green (2).jpg,,False,iodine_or_green,6,1,,,val
+83,annocerv_raw/dataset/Case 83/C83Green (3).jpg,,False,iodine_or_green,6,1,,,val
+83,annocerv_raw/dataset/Case 83/C83Iod (1).jpg,,False,iodine_or_green,6,1,,,val
+83,annocerv_raw/dataset/Case 83/C83Iod (2).jpg,,False,iodine_or_green,6,1,,,val
+84,annocerv_raw/dataset/Case 84/C84Aceto (1).jpg,annocerv_raw/dataset/Case 84/C84Aceto (1).png,True,aceto,3,0,data/masks/case084_C84Aceto_(1).png,False,val
+84,annocerv_raw/dataset/Case 84/C84Aceto (2).jpg,annocerv_raw/dataset/Case 84/C84Aceto (2).png,True,aceto,3,0,data/masks/case084_C84Aceto_(2).png,False,val
+84,annocerv_raw/dataset/Case 84/C84Aceto (3).jpg,annocerv_raw/dataset/Case 84/C84Aceto (3).png,True,aceto,3,0,data/masks/case084_C84Aceto_(3).png,False,val
+84,annocerv_raw/dataset/Case 84/C84Iod (1).jpg,,False,iodine_or_green,3,0,,,val
+84,annocerv_raw/dataset/Case 84/C84Iod (2).jpg,,False,iodine_or_green,3,0,,,val
+85,annocerv_raw/dataset/Case 85/C85Aceto (1).jpg,annocerv_raw/dataset/Case 85/C85Aceto (1).png,True,aceto,0,0,data/masks/case085_C85Aceto_(1).png,True,test
+85,annocerv_raw/dataset/Case 85/C85Aceto (2).jpg,annocerv_raw/dataset/Case 85/C85Aceto (2).png,True,aceto,0,0,data/masks/case085_C85Aceto_(2).png,True,test
+85,annocerv_raw/dataset/Case 85/C85Aceto (3).jpg,annocerv_raw/dataset/Case 85/C85Aceto (3).png,True,aceto,0,0,data/masks/case085_C85Aceto_(3).png,True,test
+85,annocerv_raw/dataset/Case 85/C85Iod (1).jpg,,False,iodine_or_green,0,0,,,test
+85,annocerv_raw/dataset/Case 85/C85Iod (2).jpg,,False,iodine_or_green,0,0,,,test
+85,annocerv_raw/dataset/Case 85/C85Iod (3).jpg,,False,iodine_or_green,0,0,,,test
+86,annocerv_raw/dataset/Case 86/C86Aceto (1).jpg,annocerv_raw/dataset/Case 86/C86Aceto (1).png,True,aceto,8,1,data/masks/case086_C86Aceto_(1).png,False,train
+86,annocerv_raw/dataset/Case 86/C86Aceto (2).jpg,annocerv_raw/dataset/Case 86/C86Aceto (2).png,True,aceto,8,1,data/masks/case086_C86Aceto_(2).png,False,train
+86,annocerv_raw/dataset/Case 86/C86Iod (1).jpg,,False,iodine_or_green,8,1,,,train
+87,annocerv_raw/dataset/Case 87/C87Aceto (1).jpg,annocerv_raw/dataset/Case 87/C87Aceto (1).png,True,aceto,6,1,data/masks/case087_C87Aceto_(1).png,False,test
+87,annocerv_raw/dataset/Case 87/C87Aceto (2).jpg,annocerv_raw/dataset/Case 87/C87Aceto (2).png,True,aceto,6,1,data/masks/case087_C87Aceto_(2).png,False,test
+87,annocerv_raw/dataset/Case 87/C87Aceto (3).jpg,annocerv_raw/dataset/Case 87/C87Aceto (3).png,True,aceto,6,1,data/masks/case087_C87Aceto_(3).png,False,test
+87,annocerv_raw/dataset/Case 87/C87Iod (1).jpg,,False,iodine_or_green,6,1,,,test
+87,annocerv_raw/dataset/Case 87/C87Iod (2).jpg,,False,iodine_or_green,6,1,,,test
+88,annocerv_raw/dataset/Case 88/C88Aceto (1).jpg,annocerv_raw/dataset/Case 88/C88Aceto (1).png,True,aceto,4,0,data/masks/case088_C88Aceto_(1).png,False,train
+88,annocerv_raw/dataset/Case 88/C88Aceto (2).jpg,annocerv_raw/dataset/Case 88/C88Aceto (2).png,True,aceto,4,0,data/masks/case088_C88Aceto_(2).png,False,train
+88,annocerv_raw/dataset/Case 88/C88Aceto (3).jpg,annocerv_raw/dataset/Case 88/C88Aceto (3).png,True,aceto,4,0,data/masks/case088_C88Aceto_(3).png,False,train
+89,annocerv_raw/dataset/Case 89/C89Aceto (1).jpg,annocerv_raw/dataset/Case 89/C89Aceto (1).png,True,aceto,3,0,data/masks/case089_C89Aceto_(1).png,False,train
+89,annocerv_raw/dataset/Case 89/C89Aceto (2).jpg,annocerv_raw/dataset/Case 89/C89Aceto (2).png,True,aceto,3,0,data/masks/case089_C89Aceto_(2).png,False,train
+89,annocerv_raw/dataset/Case 89/C89Aceto (3).jpg,annocerv_raw/dataset/Case 89/C89Aceto (3).png,True,aceto,3,0,data/masks/case089_C89Aceto_(3).png,False,train
+89,annocerv_raw/dataset/Case 89/C89Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+90,annocerv_raw/dataset/Case 90/C90Aceto (1).jpg,annocerv_raw/dataset/Case 90/C90Aceto (1).png,True,aceto,3,0,data/masks/case090_C90Aceto_(1).png,False,val
+90,annocerv_raw/dataset/Case 90/C90Aceto (2).jpg,annocerv_raw/dataset/Case 90/C90Aceto (2).png,True,aceto,3,0,data/masks/case090_C90Aceto_(2).png,False,val
+90,annocerv_raw/dataset/Case 90/C90Green (1).jpg,,False,iodine_or_green,3,0,,,val
+90,annocerv_raw/dataset/Case 90/C90Iod (1).jpg,,False,iodine_or_green,3,0,,,val
+91,annocerv_raw/dataset/Case 91/C91Aceto (1).jpg,annocerv_raw/dataset/Case 91/C91Aceto (1).png,True,aceto,2,0,data/masks/case091_C91Aceto_(1).png,False,train
+91,annocerv_raw/dataset/Case 91/C91Aceto (2).jpg,annocerv_raw/dataset/Case 91/C91Aceto (2).png,True,aceto,2,0,data/masks/case091_C91Aceto_(2).png,False,train
+91,annocerv_raw/dataset/Case 91/C91Iod (1).jpg,,False,iodine_or_green,2,0,,,train
+92,annocerv_raw/dataset/Case 92/C92Aceto (1).jpg,annocerv_raw/dataset/Case 92/C92Aceto (1).png,True,aceto,6,1,data/masks/case092_C92Aceto_(1).png,False,train
+92,annocerv_raw/dataset/Case 92/C92Aceto (2).jpg,annocerv_raw/dataset/Case 92/C92Aceto (2).png,True,aceto,6,1,data/masks/case092_C92Aceto_(2).png,False,train
+92,annocerv_raw/dataset/Case 92/C92Aceto (3).jpg,annocerv_raw/dataset/Case 92/C92Aceto (3).png,True,aceto,6,1,data/masks/case092_C92Aceto_(3).png,False,train
+92,annocerv_raw/dataset/Case 92/C92Iod (1).jpg,,False,iodine_or_green,6,1,,,train
+92,annocerv_raw/dataset/Case 92/C92Iod (2).jpg,,False,iodine_or_green,6,1,,,train
+93,annocerv_raw/dataset/Case 93/C93Aceto (1).jpg,annocerv_raw/dataset/Case 93/C93Aceto (1).png,True,aceto,7,1,data/masks/case093_C93Aceto_(1).png,False,train
+93,annocerv_raw/dataset/Case 93/C93Aceto (2).jpg,annocerv_raw/dataset/Case 93/C93Aceto (2).png,True,aceto,7,1,data/masks/case093_C93Aceto_(2).png,False,train
+93,annocerv_raw/dataset/Case 93/C93Iod (1).jpg,,False,iodine_or_green,7,1,,,train
+93,annocerv_raw/dataset/Case 93/C93Iod (2).jpg,,False,iodine_or_green,7,1,,,train
+94,annocerv_raw/dataset/Case 94/C94Aceto (1).jpg,annocerv_raw/dataset/Case 94/C94Aceto (1).png,True,aceto,1,0,data/masks/case094_C94Aceto_(1).png,True,train
+94,annocerv_raw/dataset/Case 94/C94Aceto (2).jpg,annocerv_raw/dataset/Case 94/C94Aceto (2).png,True,aceto,1,0,data/masks/case094_C94Aceto_(2).png,True,train
+94,annocerv_raw/dataset/Case 94/C94Iod (1).jpg,,False,iodine_or_green,1,0,,,train
+94,annocerv_raw/dataset/Case 94/C94Iod (2).jpg,,False,iodine_or_green,1,0,,,train
+95,annocerv_raw/dataset/Case 95/C95Aceto (1).jpg,annocerv_raw/dataset/Case 95/C95Aceto (1).png,True,aceto,1,0,data/masks/case095_C95Aceto_(1).png,True,train
+95,annocerv_raw/dataset/Case 95/C95Aceto (2).jpg,annocerv_raw/dataset/Case 95/C95Aceto (2).png,True,aceto,1,0,data/masks/case095_C95Aceto_(2).png,True,train
+95,annocerv_raw/dataset/Case 95/C95Iod (1).jpg,,False,iodine_or_green,1,0,,,train
+95,annocerv_raw/dataset/Case 95/C95Iod (2).jpg,,False,iodine_or_green,1,0,,,train
+96,annocerv_raw/dataset/Case 96/C96Aceto (1).jpg,annocerv_raw/dataset/Case 96/C96Aceto (1).png,True,aceto,0,0,data/masks/case096_C96Aceto_(1).png,True,train
+96,annocerv_raw/dataset/Case 96/C96Aceto (2).jpg,annocerv_raw/dataset/Case 96/C96Aceto (2).png,True,aceto,0,0,data/masks/case096_C96Aceto_(2).png,True,train
+96,annocerv_raw/dataset/Case 96/C96Aceto (3).jpg,annocerv_raw/dataset/Case 96/C96Aceto (3).png,True,aceto,0,0,data/masks/case096_C96Aceto_(3).png,True,train
+96,annocerv_raw/dataset/Case 96/C96Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+97,annocerv_raw/dataset/Case 97/C97Aceto (1).jpg,annocerv_raw/dataset/Case 97/C97Aceto (1).png,True,aceto,2,0,data/masks/case097_C97Aceto_(1).png,True,train
+97,annocerv_raw/dataset/Case 97/C97Aceto (2).jpg,annocerv_raw/dataset/Case 97/C97Aceto (2).png,True,aceto,2,0,data/masks/case097_C97Aceto_(2).png,True,train
+97,annocerv_raw/dataset/Case 97/C97Iod (1).jpg,,False,iodine_or_green,2,0,,,train
+97,annocerv_raw/dataset/Case 97/C97Iod (2).jpg,,False,iodine_or_green,2,0,,,train
+98,annocerv_raw/dataset/Case 98/C98Aceto (1).jpg,annocerv_raw/dataset/Case 98/C98Aceto (1).png,True,aceto,3,0,data/masks/case098_C98Aceto_(1).png,True,train
+98,annocerv_raw/dataset/Case 98/C98Aceto (2).jpg,annocerv_raw/dataset/Case 98/C98Aceto (2).png,True,aceto,3,0,data/masks/case098_C98Aceto_(2).png,True,train
+98,annocerv_raw/dataset/Case 98/C98Aceto (3).jpg,annocerv_raw/dataset/Case 98/C98Aceto (3).png,True,aceto,3,0,data/masks/case098_C98Aceto_(3).png,True,train
+98,annocerv_raw/dataset/Case 98/C98Iod (1).jpg,,False,iodine_or_green,3,0,,,train
+98,annocerv_raw/dataset/Case 98/C98Iod (2).jpg,,False,iodine_or_green,3,0,,,train
+99,annocerv_raw/dataset/Case 99/C99Aceto (1).jpg,annocerv_raw/dataset/Case 99/C99Aceto (1).png,True,aceto,0,0,data/masks/case099_C99Aceto_(1).png,True,train
+99,annocerv_raw/dataset/Case 99/C99Aceto (2).jpg,annocerv_raw/dataset/Case 99/C99Aceto (2).png,True,aceto,0,0,data/masks/case099_C99Aceto_(2).png,True,train
+99,annocerv_raw/dataset/Case 99/C99Iod (1).jpg,,False,iodine_or_green,0,0,,,train
+99,annocerv_raw/dataset/Case 99/C99Iod (2).jpg,,False,iodine_or_green,0,0,,,train
+100,annocerv_raw/dataset/Case 100/C100Aceto (1).jpg,annocerv_raw/dataset/Case 100/C100Aceto (1).png,True,aceto,1,0,data/masks/case100_C100Aceto_(1).png,True,test
+100,annocerv_raw/dataset/Case 100/C100Aceto (2).jpg,annocerv_raw/dataset/Case 100/C100Aceto (2).png,True,aceto,1,0,data/masks/case100_C100Aceto_(2).png,True,test
+100,annocerv_raw/dataset/Case 100/C100Aceto (3).jpg,annocerv_raw/dataset/Case 100/C100Aceto (3).png,True,aceto,1,0,data/masks/case100_C100Aceto_(3).png,True,test
+100,annocerv_raw/dataset/Case 100/C100Iod (1).jpg,,False,iodine_or_green,1,0,,,test
+100,annocerv_raw/dataset/Case 100/C100Iod (2).jpg,,False,iodine_or_green,1,0,,,test
