@@ -14,6 +14,7 @@ Design notes:
     params) to keep them pixel-aligned. Color-only augmentation (CLAHE,
     color jitter) is applied to the image alone.
 """
+
 from pathlib import Path
 
 import cv2
@@ -27,31 +28,59 @@ from albumentations.pytorch import ToTensorV2
 
 def build_transforms(image_size: int, split: str) -> A.Compose:
     if split == "train":
-        return A.Compose([
-            A.Resize(image_size, image_size),
-            A.HorizontalFlip(p=0.5),
-            A.VerticalFlip(p=0.2),          # cervix has no canonical "up"
-            A.Rotate(limit=25, border_mode=cv2.BORDER_REFLECT, p=0.5),
-            A.RandomBrightnessContrast(brightness_limit=0.2, contrast_limit=0.2, p=0.5),
-            A.CLAHE(clip_limit=2.0, tile_grid_size=(8, 8), p=0.3),
-            A.HueSaturationValue(hue_shift_limit=8, sat_shift_limit=15,
-                                  val_shift_limit=8, p=0.3),
-            A.GaussNoise(std_range=(0.02, 0.08), p=0.2),
-            A.ElasticTransform(alpha=40, sigma=6, p=0.15),
-            A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-            ToTensorV2(),
-        ])
+        return A.Compose(
+            [
+                A.Resize(image_size, image_size),
+                A.HorizontalFlip(p=0.5),
+                A.VerticalFlip(p=0.2),  # cervix has no canonical "up"
+                A.Rotate(limit=25, border_mode=cv2.BORDER_REFLECT, p=0.5),
+                A.RandomBrightnessContrast(
+                    brightness_limit=0.2, contrast_limit=0.2, p=0.5
+                ),
+                A.CLAHE(clip_limit=2.0, tile_grid_size=(8, 8), p=0.3),
+                A.HueSaturationValue(
+                    hue_shift_limit=8, sat_shift_limit=15, val_shift_limit=8, p=0.3
+                ),
+                A.GaussNoise(std_range=(0.02, 0.08), p=0.2),
+                A.ElasticTransform(alpha=40, sigma=6, p=0.15),
+                # Cutout/coarse-dropout: blanks out a few random rectangular
+                # patches of the IMAGE only (fill_mask=None leaves the ground
+                # truth mask untouched). Forces the model to use context from
+                # the whole lesion/surrounding tissue rather than latching onto
+                # one small, easy-to-memorize patch -- exactly the failure mode
+                # overfitting on 69 training cases invites. Sized as a fraction
+                # of the image so it scales with image_size automatically.
+                A.CoarseDropout(
+                    num_holes_range=(1, 4),
+                    hole_height_range=(0.05, 0.20),
+                    hole_width_range=(0.05, 0.20),
+                    fill=0,  # blank the image patch (mid-gray/black)
+                    fill_mask=None,  # leave the mask alone -- don't erase GT labels
+                    p=0.35,
+                ),
+                A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
+                ToTensorV2(),
+            ]
+        )
     else:
-        return A.Compose([
-            A.Resize(image_size, image_size),
-            A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-            ToTensorV2(),
-        ])
+        return A.Compose(
+            [
+                A.Resize(image_size, image_size),
+                A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
+                ToTensorV2(),
+            ]
+        )
 
 
 class ColposcopyDataset(Dataset):
-    def __init__(self, manifest_path: str, split: str, image_size: int = 384,
-                 crop_ratio: float = 0.80, seg_only: bool = False):
+    def __init__(
+        self,
+        manifest_path: str,
+        split: str,
+        image_size: int = 384,
+        crop_ratio: float = 0.80,
+        seg_only: bool = False,
+    ):
         """
         Args:
             seg_only: if True, drop rows without a mask entirely (use for a
@@ -75,7 +104,7 @@ class ColposcopyDataset(Dataset):
         h, w = img.shape[:2]
         nh, nw = int(h * self.crop_ratio), int(w * self.crop_ratio)
         top, left = (h - nh) // 2, (w - nw) // 2
-        return img[top:top + nh, left:left + nw]
+        return img[top : top + nh, left : left + nw]
 
     def __getitem__(self, idx):
         row = self.df.iloc[idx]
@@ -102,16 +131,19 @@ class ColposcopyDataset(Dataset):
                 # source photo resolution ever changes without re-running
                 # prepare_data.py, and avoids a silent aspect-ratio mismatch
                 # feeding into the shared augmentation pipeline below.
-                mask = cv2.resize(mask, (image.shape[1], image.shape[0]),
-                                   interpolation=cv2.INTER_NEAREST)
+                mask = cv2.resize(
+                    mask,
+                    (image.shape[1], image.shape[0]),
+                    interpolation=cv2.INTER_NEAREST,
+                )
             mask = (mask > 127).astype(np.float32)
         else:
             # placeholder zero mask — has_mask=False tells the loss to ignore it
             mask = np.zeros(image.shape[:2], dtype=np.float32)
 
         out = self.transform(image=image, mask=mask)
-        image_t = out["image"]                       # (3, H, W) float
-        mask_t = out["mask"].float().unsqueeze(0)     # (1, H, W) float, {0,1}
+        image_t = out["image"]  # (3, H, W) float
+        mask_t = out["mask"].float().unsqueeze(0)  # (1, H, W) float, {0,1}
 
         return {
             "image": image_t,
