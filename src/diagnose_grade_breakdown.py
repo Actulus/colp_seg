@@ -32,11 +32,31 @@ import numpy as np
 import pandas as pd
 import torch
 import yaml
+import time
 from torch.utils.data import DataLoader
 
 from dataset import ColposcopyDataset
 from model import ColposcopyUNet
 from evaluate import collect_predictions, dice_iou
+
+
+def retry_on_io_error(fn, *args, max_attempts=4, base_delay=2.0, **kwargs):
+    """Colab's Drive mount is a network FUSE filesystem and occasionally
+    drops mid-read (ConnectionAbortedError, OSError) under repeated I/O --
+    not a code bug, just Drive being Drive. Retries with backoff rather
+    than losing an otherwise-successful multi-fold run to one flaky read."""
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return fn(*args, **kwargs)
+        except (ConnectionAbortedError, ConnectionResetError, OSError) as e:
+            if attempt == max_attempts:
+                raise
+            wait = base_delay * (2 ** (attempt - 1))
+            print(
+                f"    I/O error ({e!r}), retrying in {wait:.0f}s "
+                f"(attempt {attempt}/{max_attempts})..."
+            )
+            time.sleep(wait)
 
 
 def classify_sample(prob: np.ndarray, gt: np.ndarray, threshold: float):
@@ -169,8 +189,14 @@ def main():
             )
             continue
         print(f"  fold {fold_i}: evaluating at threshold={threshold:.2f} ...")
-        df = run_fold_diagnostics(
-            cfg, fold_i, manifest_path, checkpoint_path, threshold, device
+        df = retry_on_io_error(
+            run_fold_diagnostics,
+            cfg,
+            fold_i,
+            manifest_path,
+            checkpoint_path,
+            threshold,
+            device,
         )
         all_rows.append(df)
 
