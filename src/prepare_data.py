@@ -1,33 +1,40 @@
 #!/usr/bin/env python3
 """
-prepare_data.py — unify AnnoCerv raw data into a single training-ready manifest.
+prepare_data.py — unify AnnoCerv (real pixel masks) + Atlas high/low-grade
+images (classification-only, no masks) into a single training-ready manifest.
 
-What this does (and why, vs. the old pipeline):
-  1. Parses `swede_scores.csv` -> {case_id: swede_score}. Row i (0-indexed)
-     corresponds to "Case {i+1}" — verified against the AnnoCerv README/loader.
-  2. Walks every case folder, pairs each *Aceto*.jpg with its *Aceto*.png
-     annotation overlay (masks only exist for Aceto images, per the dataset's
-     own README). Iodine/green-filter images are recorded too but with
-     has_mask=False, so they can be used for classification-only if you want,
-     and are NEVER counted in segmentation metrics.
-  3. Converts each RGBA annotation overlay into one binary lesion mask by
-     merging the acetowhite / vessel / mosaic color channels (junction,
-     naboth cysts, and gland openings are anatomical landmarks, not lesions,
-     so they're intentionally excluded — this matches clinical intent, not
-     just convenience).
-  4. Writes masks to disk once as compressed PNGs (so training doesn't redo
-     the color-distance + morphology parse every epoch).
-  5. Splits at the CASE level (not image level) into train/val/test, so that
-     the same patient's images never leak across splits. Stratified by
-     swede-score-derived label to keep class balance similar across splits.
-  6. Writes a single `manifest.csv` that the Dataset class reads — one file,
-     one source of truth, easy to inspect/debug in a spreadsheet.
+Two data sources, two very different roles:
+
+  AnnoCerv (--raw_dir): 100 cases, real clinician-drawn lesion outlines.
+    This is the ONLY source of segmentation supervision. Case-level
+    stratified train/val/test split happens here.
+
+  Atlas high/low-grade (--atlas_dir, optional): ~62 cases scraped from the
+    IARC Colposcopy Atlas, well-documented (metadata.txt per case) but with
+    NO pixel masks — only a high/low-grade folder label. These rows are
+    added with has_mask=False, so the existing has_mask-aware loss
+    (SegmentationLoss in losses.py) automatically excludes them from
+    segmentation training and they only ever contribute to the auxiliary
+    classification head. They are ALWAYS assigned split="train" and are
+    deliberately excluded from the case pool used for train/val/test
+    splitting and from train_kfold.py's k-fold rotation — they have no
+    masks, so putting them in val/test would just be wasted rows there,
+    and forcing them into train consistently means every fold gets the
+    same classification-data boost rather than a lottery of which fold
+    happens to draw them.
+
+  (Kolposzkopia, the third folder in that same Atlas repo, is NOT loaded
+  here at all — it has no masks AND no reliable numeric grade label, and
+  is small/inconsistent enough that it's being used as a pure qualitative
+  holdout instead. See src/inspect_kolposzkopia.py.)
 
 Run:
-    python src/prepare_data.py --raw_dir annocerv_raw --out_dir data --swede_threshold 5
+    python src/prepare_data.py --raw_dir annocerv_raw/dataset \
+        --atlas_dir atlas_raw --out_dir data --swede_threshold 5
 """
 import argparse
 import json
+import re
 from pathlib import Path
 
 import numpy as np
@@ -35,7 +42,7 @@ import pandas as pd
 from PIL import Image
 from scipy.ndimage import binary_fill_holes
 from skimage.morphology import closing, disk
-from sklearn.model_selection import StratifiedShuffleSplit, StratifiedKFold
+from sklearn.model_selection import StratifiedShuffleSplit
 
 # Color encoding per the AnnoCerv README (RGB, alpha channel marks stroke presence)
 COLOR_MAP = {
@@ -48,6 +55,8 @@ COLOR_MAP = {
     "glands":     (0, 0, 0),       # black — cuffed gland openings
 }
 LESION_CHANNELS = ["acetowhite", "vessels", "mosaics"]
+
+ATLAS_CASE_ID_OFFSET = 100_000  # keeps Atlas case_ids disjoint from AnnoCerv's 1-100
 
 
 def crop_center(img: Image.Image, crop_ratio: float = 0.8) -> Image.Image:
@@ -77,22 +86,12 @@ def parse_mask(png_path: Path, crop_ratio: float, out_size: int,
     """RGBA annotation overlay -> single binary lesion mask, uint8 {0,255}.
 
     Color-matching + morphological closing run at `work_size` (not full
-    camera resolution, e.g. ~3000px) purely for speed — original AnnoCerv
-    photos are large enough that closing(disk(5)) at full res costs several
-    seconds per image. Strokes stay well connected at 640px; this was
-    spot-checked against full-res parses with no visible difference in the
-    resulting filled mask.
-
-    IMPORTANT: `work_size` scaling preserves the crop's original aspect
-    ratio (long side -> work_size, short side scaled by the same factor).
-    An earlier version of this function forcibly resized the final mask to
-    a fixed (out_size, out_size) SQUARE regardless of the source photo's
-    aspect ratio, silently warping every mask's geometry relative to its
-    image (AnnoCerv photos are ~1.5:1, not square) — caught when the
-    training dataset loader found image/mask shapes disagreeing. Aspect
-    ratio is now preserved end to end; only actual pixel dimensions differ
-    between the saved mask and the source image, which the Dataset class
-    reconciles with a same-aspect-ratio resize at load time.
+    camera resolution, e.g. ~3000px) purely for speed. `work_size` scaling
+    preserves the crop's original aspect ratio (long side -> work_size,
+    short side scaled by the same factor) -- the mask is saved at that
+    (smaller, aspect-correct) resolution; the Dataset class resizes each
+    mask to match its paired image at load time, using the same aspect
+    ratio, so nothing gets stretched incorrectly.
     """
     img = Image.open(png_path).convert("RGBA")
     img = crop_center(img, crop_ratio)
@@ -113,12 +112,8 @@ def parse_mask(png_path: Path, crop_ratio: float, out_size: int,
             closed = closing(outline.astype(np.uint8), disk(5)).astype(bool)
             lesion |= binary_fill_holes(closed)
 
-    # NOTE: no further resize to a fixed square here — `lesion` is already
-    # at (scaled-but-aspect-preserved) `work_size` resolution, matching the
-    # crop's actual aspect ratio. `out_size` is accepted for CLI/API
-    # backward-compatibility but intentionally unused for shape; the
-    # Dataset class resizes each mask to match its paired image at load
-    # time, and albumentations' Resize handles the final square target.
+    # No further resize to a fixed square here -- `lesion` is already at
+    # (scaled-but-aspect-preserved) work_size resolution.
     return (lesion * 255).astype(np.uint8)
 
 
@@ -157,23 +152,78 @@ def build_manifest(raw_dir: Path, swede_threshold: int) -> pd.DataFrame:
                 case_id=case_num, img_path=str(jpg),
                 mask_path=str(png) if png.exists() else "",
                 has_mask=png.exists(), img_type="aceto",
-                swede_score=score, label=label,
+                swede_score=score, label=label, source="annocerv",
             ))
         for jpg in sorted(list(d.glob("*Iod*.jpg")) + list(d.glob("*Green*.jpg"))):
             rows.append(dict(
                 case_id=case_num, img_path=str(jpg),
                 mask_path="", has_mask=False,
                 img_type="iodine_or_green", swede_score=score, label=label,
+                source="annocerv",
             ))
 
+    return pd.DataFrame(rows)
+
+
+def _parse_atlas_swede_score(metadata_text: str):
+    m = re.search(r"Swede Score:\s*(-?\d+)", metadata_text)
+    return int(m.group(1)) if m else -1  # -1 = sentinel "unknown", never used for
+    # anything since these rows always have has_mask=False and their label
+    # comes from the folder (high/low), not from a threshold on this score.
+
+
+def load_atlas_classification_data(atlas_dir: Path) -> pd.DataFrame:
+    """Scrapes images_high_grade/ and images_low_grade/ into classification-
+    only rows (has_mask=False, split hardcoded to 'train' downstream).
+    Every image in a case folder becomes one row (speculum/saline/acetic
+    acid/iodine alike) -- more rows of real signal for the classification
+    head, and unlike segmentation there's no mask-geometry reason to be
+    picky about which stage each image shows."""
+    rows = []
+    case_counter = ATLAS_CASE_ID_OFFSET
+    grade_dirs = [("images_high_grade", 1), ("images_low_grade", 0)]
+
+    for folder_name, label in grade_dirs:
+        grade_dir = atlas_dir / folder_name
+        if not grade_dir.exists():
+            print(f"  WARNING: {grade_dir} not found, skipping {folder_name}")
+            continue
+        case_dirs = sorted([d for d in grade_dir.iterdir() if d.is_dir()])
+        for case_dir in case_dirs:
+            meta_path = case_dir / "metadata.txt"
+            swede_score = -1
+            if meta_path.exists():
+                swede_score = _parse_atlas_swede_score(meta_path.read_text(errors="ignore"))
+
+            images = sorted([p for p in case_dir.iterdir()
+                              if p.suffix.lower() in (".jpg", ".jpeg", ".png")])
+            if not images:
+                continue
+
+            case_counter += 1
+            for img_path in images:
+                rows.append(dict(
+                    case_id=case_counter, img_path=str(img_path),
+                    mask_path="", has_mask=False, img_type="atlas",
+                    swede_score=swede_score, label=label, source="atlas_aux",
+                ))
+
     df = pd.DataFrame(rows)
+    n_cases = df["case_id"].nunique() if len(df) else 0
+    print(f"  Atlas aux data: {n_cases} cases, {len(df)} images "
+          f"({(df['label'] == 1).sum() if len(df) else 0} high-grade rows, "
+          f"{(df['label'] == 0).sum() if len(df) else 0} low-grade rows)")
     return df
 
 
-def case_level_split(df: pd.DataFrame, val_frac=0.15, test_frac=0.15, seed=42):
+def case_level_split(df: pd.DataFrame, val_frac=0.15, test_frac=0.15, seed=42) -> pd.DataFrame:
     """Split by case_id (not image), stratified on case-level label, so no
-    patient's images appear in more than one split."""
-    cases = df[["case_id", "label"]].drop_duplicates().reset_index(drop=True)
+    patient's images appear in more than one split. Only operates on
+    source=='annocerv' rows -- Atlas aux rows (if present) have no masks
+    and are force-assigned to 'train' via the fillna fallback below, never
+    entering the case pool that gets split into val/test."""
+    annocerv_df = df[df["source"] == "annocerv"]
+    cases = annocerv_df[["case_id", "label"]].drop_duplicates().reset_index(drop=True)
 
     sss1 = StratifiedShuffleSplit(n_splits=1, test_size=test_frac, random_state=seed)
     trainval_idx, test_idx = next(sss1.split(cases["case_id"], cases["label"]))
@@ -190,18 +240,23 @@ def case_level_split(df: pd.DataFrame, val_frac=0.15, test_frac=0.15, seed=42):
     split_map.update({c: "train" for c in train_cases["case_id"]})
     split_map.update({c: "val" for c in val_cases["case_id"]})
     split_map.update({c: "test" for c in test_cases["case_id"]})
-    df["split"] = df["case_id"].map(split_map)
+    # any case_id not in split_map (i.e. Atlas aux cases) falls back to "train"
+    df["split"] = df["case_id"].map(split_map).fillna("train")
     return df
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--raw_dir", type=str, default="annocerv_raw/dataset")
+    ap.add_argument("--atlas_dir", type=str, default=None,
+                     help="path to cloned colposcopy-digital-atlas-dataset repo root "
+                          "(the dir containing images_high_grade/, images_low_grade/). "
+                          "Optional -- omit to train on AnnoCerv alone.")
     ap.add_argument("--out_dir", type=str, default="data")
     ap.add_argument("--swede_threshold", type=int, default=5)
     ap.add_argument("--mask_size", type=int, default=384,
-                     help="masks are pre-rendered at this resolution; the "
-                          "Dataset resizes images to match at load time.")
+                     help="kept for CLI backward-compatibility; no longer forces a "
+                          "fixed square (see parse_mask docstring).")
     ap.add_argument("--crop_ratio", type=float, default=0.80)
     args = ap.parse_args()
 
@@ -244,13 +299,25 @@ def main():
               f"the clinician marked as having no notable lesion features. "
               f"Kept as valid negative-mask examples, not dropped.")
 
-    print("Splitting by case (train/val/test = 70/15/15, stratified by label) ...")
+    if args.atlas_dir:
+        print(f"\nLoading Atlas classification-only data from {args.atlas_dir} ...")
+        atlas_df = load_atlas_classification_data(Path(args.atlas_dir))
+        if len(atlas_df):
+            atlas_df["parsed_mask_path"] = ""
+            atlas_df["mask_is_empty"] = np.nan
+            df = pd.concat([df, atlas_df], ignore_index=True)
+
+    print("\nSplitting by case (train/val/test = 70/15/15 of AnnoCerv cases; "
+          "Atlas aux rows always -> train) ...")
     df = case_level_split(df)
     for split in ["train", "val", "test"]:
         sub = df[df["split"] == split]
         sub_masked = sub[sub["has_mask"]]
-        print(f"  {split:5s}: {sub['case_id'].nunique():3d} cases, {len(sub):4d} images, "
-              f"{len(sub_masked):4d} with masks, "
+        n_annocerv_cases = sub[sub["source"] == "annocerv"]["case_id"].nunique()
+        n_atlas_cases = sub[sub["source"] == "atlas_aux"]["case_id"].nunique() if "source" in sub else 0
+        print(f"  {split:5s}: {n_annocerv_cases:3d} AnnoCerv cases"
+              + (f" + {n_atlas_cases} Atlas aux cases" if n_atlas_cases else "")
+              + f", {len(sub):4d} images, {len(sub_masked):4d} with masks, "
               f"pos.rate(cls)={sub['label'].mean():.2f}")
 
     manifest_path = out_dir / "manifest.csv"
@@ -258,7 +325,8 @@ def main():
     print(f"\nWrote manifest: {manifest_path}")
 
     stats = {
-        "n_cases": int(df["case_id"].nunique()),
+        "n_annocerv_cases": int(df[df["source"] == "annocerv"]["case_id"].nunique()),
+        "n_atlas_aux_cases": int(df[df["source"] == "atlas_aux"]["case_id"].nunique()) if "source" in df else 0,
         "n_images": int(len(df)),
         "n_with_mask": int(df["has_mask"].sum()),
         "swede_threshold": args.swede_threshold,
