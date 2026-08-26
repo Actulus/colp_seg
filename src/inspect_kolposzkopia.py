@@ -157,6 +157,16 @@ def main():
         help="e.g. atlas_raw/Kolposzkopia",
     )
     ap.add_argument("--per_page", type=int, default=6)
+    ap.add_argument(
+        "--threshold",
+        type=float,
+        default=None,
+        help="override the calibrated threshold from test_results.json "
+        "-- useful for Kolposzkopia specifically, since that "
+        "threshold was calibrated on a very different, "
+        "class-imbalanced eval set and may be far too "
+        "conservative for an exploratory out-of-domain check.",
+    )
     args = ap.parse_args()
 
     cfg = yaml.safe_load(Path(args.config).read_text())
@@ -187,15 +197,21 @@ def main():
     ).to(device)
     model.load_state_dict(ckpt["model_state"])
 
-    threshold = 0.5
-    test_results_path = Path(cfg["output"]["dir"]) / "test_results.json"
-    if test_results_path.exists():
-        import json
-
-        threshold = json.loads(test_results_path.read_text())["calibrated_threshold"]
-        print(f"Using calibrated threshold from evaluate.py: {threshold:.2f}")
+    if args.threshold is not None:
+        threshold = args.threshold
+        print(f"Using manually-specified threshold: {threshold:.2f}")
     else:
-        print("No test_results.json found -- using default threshold 0.5.")
+        threshold = 0.5
+        test_results_path = Path(cfg["output"]["dir"]) / "test_results.json"
+        if test_results_path.exists():
+            import json
+
+            threshold = json.loads(test_results_path.read_text())[
+                "calibrated_threshold"
+            ]
+            print(f"Using calibrated threshold from evaluate.py: {threshold:.2f}")
+        else:
+            print("No test_results.json found -- using default threshold 0.5.")
 
     transform = build_transform(cfg["data"]["image_size"])
     out_dir = Path(cfg["output"]["dir"])

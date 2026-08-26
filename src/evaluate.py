@@ -7,6 +7,7 @@ broken out by swede-score grade, with bootstrap confidence intervals.
 Usage:
     python src/evaluate.py --config configs/config.yaml --checkpoint outputs/best_model.pt
 """
+
 import argparse
 import json
 from pathlib import Path
@@ -64,11 +65,16 @@ def hausdorff_95(pred: np.ndarray, gt: np.ndarray):
 
 def sweep_threshold(probs_list, gts_list, thresholds=None):
     if thresholds is None:
-        thresholds = np.arange(0.1, 0.91, 0.05)
+        thresholds = np.concatenate(
+            [np.arange(0.1, 0.91, 0.05), np.arange(0.91, 0.99, 0.02)]
+        )
     best_thr, best_dice = 0.5, -1
     results = []
     for thr in thresholds:
-        dices = [dice_iou((p >= thr).astype(np.float32), g)[0] for p, g in zip(probs_list, gts_list)]
+        dices = [
+            dice_iou((p >= thr).astype(np.float32), g)[0]
+            for p, g in zip(probs_list, gts_list)
+        ]
         mean_dice = float(np.mean(dices))
         results.append((float(thr), mean_dice))
         if mean_dice > best_dice:
@@ -79,7 +85,9 @@ def sweep_threshold(probs_list, gts_list, thresholds=None):
 def bootstrap_ci(values, n_boot=2000, seed=0):
     rng = np.random.default_rng(seed)
     values = np.array(values)
-    means = [rng.choice(values, size=len(values), replace=True).mean() for _ in range(n_boot)]
+    means = [
+        rng.choice(values, size=len(values), replace=True).mean() for _ in range(n_boot)
+    ]
     return float(np.percentile(means, 2.5)), float(np.percentile(means, 97.5))
 
 
@@ -96,8 +104,10 @@ def main():
     ckpt = torch.load(ckpt_path, map_location=device)
 
     model = ColposcopyUNet(
-        encoder_name=cfg["model"]["encoder"], pretrained=False,
-        use_cls_head=cfg["model"]["use_cls_head"], dropout=cfg["model"]["dropout"],
+        encoder_name=cfg["model"]["encoder"],
+        pretrained=False,
+        use_cls_head=cfg["model"]["use_cls_head"],
+        dropout=cfg["model"]["dropout"],
     ).to(device)
     model.load_state_dict(ckpt["model_state"])
 
@@ -114,17 +124,24 @@ def main():
     best_thr, best_val_dice, sweep = sweep_threshold(val_probs, val_gts)
     print(f"  best threshold = {best_thr:.2f}  (val dice = {best_val_dice:.4f})")
     if best_thr <= 0.15:
-        print("  WARNING: calibrated threshold is very low — this usually means "
-              "predicted probabilities are poorly separated between lesion and "
-              "background. Worth checking training curves / trying more epochs "
-              "before trusting this threshold.")
+        print(
+            "  WARNING: calibrated threshold is very low — this usually means "
+            "predicted probabilities are poorly separated between lesion and "
+            "background. Worth checking training curves / trying more epochs "
+            "before trusting this threshold."
+        )
 
     print("Evaluating on TEST at that threshold...")
     test_probs, test_gts, test_cases = collect_predictions(model, test_loader, device)
 
     import pandas as pd
+
     manifest_df = pd.read_csv(manifest)
-    case_to_score = manifest_df.drop_duplicates("case_id").set_index("case_id")["swede_score"].to_dict()
+    case_to_score = (
+        manifest_df.drop_duplicates("case_id")
+        .set_index("case_id")["swede_score"]
+        .to_dict()
+    )
 
     dices, ious, hd95s, grades = [], [], [], []
     for p, g, cid in zip(test_probs, test_gts, test_cases):
@@ -143,8 +160,11 @@ def main():
 
     grades_arr = np.array(grades)
     dices_arr = np.array(dices)
-    per_grade = {g: float(dices_arr[grades_arr == g].mean()) for g in set(grades)
-                 if (grades_arr == g).sum() > 0}
+    per_grade = {
+        g: float(dices_arr[grades_arr == g].mean())
+        for g in set(grades)
+        if (grades_arr == g).sum() > 0
+    }
 
     results = {
         "checkpoint": ckpt_path,

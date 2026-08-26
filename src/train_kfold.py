@@ -318,6 +318,19 @@ def run_kfold(cfg: dict, n_folds: int, seed: int = 42):
         )
 
         fold_dir = kfold_out_dir / f"fold{fold_i}"
+
+        fold_result_path = fold_dir / "fold_results.json"
+        if fold_result_path.exists():
+            print(
+                f"  fold {fold_i} already completed, loading saved result and skipping retraining"
+            )
+            row = json.loads(fold_result_path.read_text())
+            fold_results.append(row)
+            pd.DataFrame(fold_results).to_csv(
+                kfold_out_dir / "kfold_results.csv", index=False
+            )
+            continue
+
         train_result = train_one_fold(cfg, str(fold_manifest_path), device, fold_dir)
         eval_result = evaluate_fold(
             cfg, str(fold_manifest_path), train_result["model_state"], device
