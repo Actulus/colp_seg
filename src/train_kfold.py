@@ -50,7 +50,7 @@ from torch.utils.data import DataLoader
 from dataset import ColposcopyDataset
 from model import ColposcopyUNet, build_param_groups
 from losses import SegmentationLoss, ClassificationLoss
-from train import compute_pos_weights, make_lr_lambda, run_epoch
+from train import compute_pos_weights, make_lr_lambda, run_epoch, build_train_sampler
 from evaluate import (
     collect_predictions,
     sweep_threshold,
@@ -89,10 +89,14 @@ def train_one_fold(
     train_ds = ColposcopyDataset(manifest_path, "train", image_size, seg_only=False)
     val_ds = ColposcopyDataset(manifest_path, "val", image_size, seg_only=False)
 
+    train_sampler = build_train_sampler(
+        train_ds,
+        high_grade_oversample=cfg["training"].get("high_grade_oversample", 2.0),
+    )
     train_loader = DataLoader(
         train_ds,
         batch_size=cfg["training"]["batch_size"],
-        shuffle=True,
+        sampler=train_sampler,
         num_workers=cfg["training"]["num_workers"],
         pin_memory=True,
         drop_last=True,
