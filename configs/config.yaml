@@ -4,7 +4,7 @@ data:
   swede_threshold: 5
 
 model:
-  encoder: "resnet18"        # resnet18 / resnet34 / resnet50
+  encoder: "resnet34"        # resnet18 / resnet34 / resnet50
   pretrained: true
   use_cls_head: true         # auxiliary classification head (set false to go seg-only)
   dropout: 0.4
@@ -23,10 +23,10 @@ training:
   cls_loss_weight: 0.3        # kept low: segmentation is the primary task
   seg_bce_weight: 0.5
   seg_dice_weight: 0.5
-  use_tversky: true          # switch to true + tune alpha/beta below to bias recall
+  use_tversky: false          # switch to true + tune alpha/beta below to bias recall
   tversky_alpha: 0.3          # false-positive weight
   tversky_beta: 0.7           # false-negative weight (>alpha => favors recall)
-  high_grade_oversample: 2.0 # new key -- how much more often masked high-grade
+  high_grade_oversample: 1.0 # new key -- how much more often masked high-grade
                               # rows get sampled per epoch vs masked low-grade
 
 output:
