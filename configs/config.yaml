@@ -7,7 +7,7 @@ model:
   encoder: "resnet34"        # resnet18 / resnet34 / resnet50
   pretrained: true
   use_cls_head: true         # auxiliary classification head (set false to go seg-only)
-  dropout: 0.4
+  dropout: 0.25
 
 training:
   epochs: 100
@@ -15,7 +15,7 @@ training:
   num_workers: 4
   learning_rate: 0.0003       # this is the DECODER/heads LR; encoder = this * encoder_lr_mult
   encoder_lr_mult: 0.1
-  weight_decay: 0.0005
+  weight_decay: 0.0001
   warmup_epochs: 3
   early_stopping_patience: 20
   mixed_precision: true
