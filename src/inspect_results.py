@@ -20,10 +20,12 @@ things worth looking at directly:
 Usage:
     python src/inspect_results.py --config configs/config.yaml --n_samples 8
 """
+
 import argparse
 from pathlib import Path
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -42,13 +44,19 @@ def plot_training_curves(history_csv: Path, out_path: Path):
 
     axes[0].plot(df["epoch"], df["train_loss"], label="train")
     axes[0].plot(df["epoch"], df["val_loss"], label="val")
-    axes[0].set_xlabel("epoch"); axes[0].set_ylabel("loss")
-    axes[0].set_title("Loss"); axes[0].legend(); axes[0].grid(alpha=0.3)
+    axes[0].set_xlabel("epoch")
+    axes[0].set_ylabel("loss")
+    axes[0].set_title("Loss")
+    axes[0].legend()
+    axes[0].grid(alpha=0.3)
 
     axes[1].plot(df["epoch"], df["train_dice@0.5"], label="train")
     axes[1].plot(df["epoch"], df["val_dice@0.5"], label="val")
-    axes[1].set_xlabel("epoch"); axes[1].set_ylabel("Dice @ 0.5")
-    axes[1].set_title("Segmentation Dice"); axes[1].legend(); axes[1].grid(alpha=0.3)
+    axes[1].set_xlabel("epoch")
+    axes[1].set_ylabel("Dice @ 0.5")
+    axes[1].set_title("Segmentation Dice")
+    axes[1].legend()
+    axes[1].grid(alpha=0.3)
     axes[1].set_ylim(0, 1)
 
     best_epoch = df.loc[df["val_dice@0.5"].idxmax(), "epoch"]
@@ -56,7 +64,9 @@ def plot_training_curves(history_csv: Path, out_path: Path):
     fig.suptitle(f"Best val Dice = {best_dice:.3f} at epoch {int(best_epoch)}")
     fig.tight_layout()
     fig.savefig(out_path, dpi=130)
-    print(f"Wrote {out_path}  (best val_dice={best_dice:.3f} @ epoch {int(best_epoch)})")
+    print(
+        f"Wrote {out_path}  (best val_dice={best_dice:.3f} @ epoch {int(best_epoch)})"
+    )
 
 
 def denormalize(img_tensor):
@@ -94,16 +104,21 @@ def plot_qualitative(model, ds, device, threshold, n_samples, out_path, seed=0):
 
         img_np = denormalize(sample["image"])
 
-        axes[row, 0].imshow(img_np); axes[row, 0].set_title(f"case {sample['case_id']}"); axes[row, 0].axis("off")
+        axes[row, 0].imshow(img_np)
+        axes[row, 0].set_title(f"case {sample['case_id']}")
+        axes[row, 0].axis("off")
 
         gt_overlay = img_np.copy()
         gt_overlay[gt > 0.5] = [0, 1, 0]
-        axes[row, 1].imshow(0.6 * img_np + 0.4 * gt_overlay); axes[row, 1].set_title("ground truth"); axes[row, 1].axis("off")
+        axes[row, 1].imshow(0.6 * img_np + 0.4 * gt_overlay)
+        axes[row, 1].set_title("ground truth")
+        axes[row, 1].axis("off")
 
         pred_overlay = img_np.copy()
         pred_overlay[pred > 0.5] = [1, 0, 0]
         axes[row, 2].imshow(0.6 * img_np + 0.4 * pred_overlay)
-        axes[row, 2].set_title(f"prediction (Dice={d:.2f})"); axes[row, 2].axis("off")
+        axes[row, 2].set_title(f"prediction (Dice={d:.2f})")
+        axes[row, 2].axis("off")
 
     fig.tight_layout()
     fig.savefig(out_path, dpi=130)
@@ -115,7 +130,26 @@ def main():
     ap.add_argument("--config", type=str, default="configs/config.yaml")
     ap.add_argument("--checkpoint", type=str, default=None)
     ap.add_argument("--n_samples", type=int, default=8)
-    ap.add_argument("--split", type=str, default="test", choices=["train", "val", "test"])
+    ap.add_argument(
+        "--split", type=str, default="test", choices=["train", "val", "test"]
+    )
+    ap.add_argument(
+        "--threshold",
+        type=float,
+        default=None,
+        help="override the calibrated threshold from test_results.json -- "
+        "useful when checking train-split predictions, since a "
+        "threshold picked to maximize val Dice may be too "
+        "conservative to show real signal on individual images.",
+    )
+    ap.add_argument(
+        "--seed",
+        type=int,
+        default=0,
+        help="which qualitative samples to show -- vary this to avoid "
+        "always seeing the same fixed subset, which can look "
+        "stuck even when the model's overall behavior is changing.",
+    )
     args = ap.parse_args()
 
     cfg = yaml.safe_load(Path(args.config).read_text())
@@ -131,26 +165,50 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     ckpt = torch.load(ckpt_path, map_location=device)
     model = ColposcopyUNet(
-        encoder_name=cfg["model"]["encoder"], pretrained=False,
-        use_cls_head=cfg["model"]["use_cls_head"], dropout=cfg["model"]["dropout"],
+        encoder_name=cfg["model"]["encoder"],
+        pretrained=False,
+        use_cls_head=cfg["model"]["use_cls_head"],
+        dropout=cfg["model"]["dropout"],
     ).to(device)
     model.load_state_dict(ckpt["model_state"])
-    print(f"Loaded checkpoint from epoch {ckpt.get('epoch')}, val_dice={ckpt.get('val_dice'):.4f}")
+    print(
+        f"Loaded checkpoint from epoch {ckpt.get('epoch')}, val_dice={ckpt.get('val_dice'):.4f}"
+    )
 
-    test_results_path = out_dir / "test_results.json"
-    threshold = 0.5
-    if test_results_path.exists():
-        import json
-        threshold = json.loads(test_results_path.read_text())["calibrated_threshold"]
-        print(f"Using calibrated threshold from evaluate.py: {threshold:.2f}")
+    if args.threshold is not None:
+        threshold = args.threshold
+        print(f"Using manually-specified threshold: {threshold:.2f}")
     else:
-        print("No test_results.json found — using default threshold 0.5. "
-              "Run evaluate.py first to get a calibrated threshold.")
+        test_results_path = out_dir / "test_results.json"
+        threshold = 0.5
+        if test_results_path.exists():
+            import json
 
-    ds = ColposcopyDataset(cfg["data"]["manifest_path"], args.split,
-                            cfg["data"]["image_size"], seg_only=True)
-    plot_qualitative(model, ds, device, threshold, args.n_samples,
-                      out_dir / f"qualitative_predictions_{args.split}.png")
+            threshold = json.loads(test_results_path.read_text())[
+                "calibrated_threshold"
+            ]
+            print(f"Using calibrated threshold from evaluate.py: {threshold:.2f}")
+        else:
+            print(
+                "No test_results.json found — using default threshold 0.5. "
+                "Run evaluate.py first to get a calibrated threshold."
+            )
+
+    ds = ColposcopyDataset(
+        cfg["data"]["manifest_path"],
+        args.split,
+        cfg["data"]["image_size"],
+        seg_only=True,
+    )
+    plot_qualitative(
+        model,
+        ds,
+        device,
+        threshold,
+        args.n_samples,
+        out_dir / f"qualitative_predictions_{args.split}.png",
+        seed=args.seed,
+    )
 
 
 if __name__ == "__main__":
