@@ -18,12 +18,14 @@ Usage:
     python src/inspect_kolposzkopia.py --config configs/config.yaml \
         --kolposzkopia_dir atlas_raw/Kolposzkopia --threshold 0.3
 """
+
 import argparse
 import csv
 from pathlib import Path
 
 import cv2
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
@@ -66,11 +68,13 @@ def collect_case_images(kolposzkopia_dir: Path) -> list:
 
 
 def build_transform(image_size: int) -> A.Compose:
-    return A.Compose([
-        A.Resize(image_size, image_size),
-        A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-        ToTensorV2(),
-    ])
+    return A.Compose(
+        [
+            A.Resize(image_size, image_size),
+            A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
+            ToTensorV2(),
+        ]
+    )
 
 
 def load_and_crop(img_path: Path, crop_ratio: float) -> np.ndarray:
@@ -81,7 +85,7 @@ def load_and_crop(img_path: Path, crop_ratio: float) -> np.ndarray:
     h, w = img.shape[:2]
     nh, nw = int(h * crop_ratio), int(w * crop_ratio)
     top, left = (h - nh) // 2, (w - nw) // 2
-    return img[top:top + nh, left:left + nw]
+    return img[top : top + nh, left : left + nw]
 
 
 def denormalize(img_tensor: torch.Tensor) -> np.ndarray:
@@ -92,13 +96,22 @@ def denormalize(img_tensor: torch.Tensor) -> np.ndarray:
 
 
 @torch.no_grad()
-def run_and_plot(model, device, items, diagnosis_map, transform, crop_ratio,
-                  threshold, out_dir: Path, per_page: int = 6):
+def run_and_plot(
+    model,
+    device,
+    items,
+    diagnosis_map,
+    transform,
+    crop_ratio,
+    threshold,
+    out_dir: Path,
+    per_page: int = 6,
+):
     model.eval()
     n_pages = (len(items) + per_page - 1) // per_page
 
     for page in range(n_pages):
-        chunk = items[page * per_page:(page + 1) * per_page]
+        chunk = items[page * per_page : (page + 1) * per_page]
         fig, axes = plt.subplots(len(chunk), 2, figsize=(7, 3.2 * len(chunk)))
         if len(chunk) == 1:
             axes = axes[None, :]
@@ -111,8 +124,8 @@ def run_and_plot(model, device, items, diagnosis_map, transform, crop_ratio,
 
             img_np = denormalize(transformed[0].cpu())
             overlay = img_np.copy()
-            overlay[pred > 0.5] = [1, 0, 0]
-            blended = (0.6 * img_np + 0.4 * overlay)
+            overlay[pred > 0.5] = [0.1, 0.3, 1.0]
+            blended = 0.6 * img_np + 0.4 * overlay
 
             diag = diagnosis_map.get(case_id.upper(), "")
             title = f"{case_id}" + (f" — {diag}" if diag else "")
@@ -137,15 +150,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", type=str, default="configs/config.yaml")
     ap.add_argument("--checkpoint", type=str, default=None)
-    ap.add_argument("--kolposzkopia_dir", type=str, required=True,
-                     help="e.g. atlas_raw/Kolposzkopia")
+    ap.add_argument(
+        "--kolposzkopia_dir",
+        type=str,
+        required=True,
+        help="e.g. atlas_raw/Kolposzkopia",
+    )
     ap.add_argument("--per_page", type=int, default=6)
-    ap.add_argument("--threshold", type=float, default=None,
-                     help="override the calibrated threshold from test_results.json "
-                          "-- useful for Kolposzkopia specifically, since that "
-                          "threshold was calibrated on a very different, "
-                          "class-imbalanced eval set and may be far too "
-                          "conservative for an exploratory out-of-domain check.")
+    ap.add_argument(
+        "--threshold",
+        type=float,
+        default=None,
+        help="override the calibrated threshold from test_results.json "
+        "-- useful for Kolposzkopia specifically, since that "
+        "threshold was calibrated on a very different, "
+        "class-imbalanced eval set and may be far too "
+        "conservative for an exploratory out-of-domain check.",
+    )
     args = ap.parse_args()
 
     cfg = yaml.safe_load(Path(args.config).read_text())
@@ -154,19 +175,25 @@ def main():
     kolposzkopia_dir = Path(args.kolposzkopia_dir)
     items = collect_case_images(kolposzkopia_dir)
     if not items:
-        raise FileNotFoundError(f"No images found under {kolposzkopia_dir} -- "
-                                 f"check the path points at the 'Kolposzkopia' "
-                                 f"folder itself, not its parent repo.")
-    print(f"Found {len(items)} images across "
-          f"{len({c for c, _ in items})} Kolposzkopia cases.")
+        raise FileNotFoundError(
+            f"No images found under {kolposzkopia_dir} -- "
+            f"check the path points at the 'Kolposzkopia' "
+            f"folder itself, not its parent repo."
+        )
+    print(
+        f"Found {len(items)} images across "
+        f"{len({c for c, _ in items})} Kolposzkopia cases."
+    )
 
     diagnosis_map = load_diagnosis_map(kolposzkopia_dir)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     ckpt = torch.load(ckpt_path, map_location=device)
     model = ColposcopyUNet(
-        encoder_name=cfg["model"]["encoder"], pretrained=False,
-        use_cls_head=cfg["model"]["use_cls_head"], dropout=cfg["model"]["dropout"],
+        encoder_name=cfg["model"]["encoder"],
+        pretrained=False,
+        use_cls_head=cfg["model"]["use_cls_head"],
+        dropout=cfg["model"]["dropout"],
     ).to(device)
     model.load_state_dict(ckpt["model_state"])
 
@@ -178,7 +205,10 @@ def main():
         test_results_path = Path(cfg["output"]["dir"]) / "test_results.json"
         if test_results_path.exists():
             import json
-            threshold = json.loads(test_results_path.read_text())["calibrated_threshold"]
+
+            threshold = json.loads(test_results_path.read_text())[
+                "calibrated_threshold"
+            ]
             print(f"Using calibrated threshold from evaluate.py: {threshold:.2f}")
         else:
             print("No test_results.json found -- using default threshold 0.5.")
@@ -188,19 +218,29 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     print("Running inference (no ground truth -- qualitative only) ...")
-    run_and_plot(model, device, items, diagnosis_map, transform,
-                 cfg["data"].get("crop_ratio", 0.80),
-                 threshold, out_dir, per_page=args.per_page)
+    run_and_plot(
+        model,
+        device,
+        items,
+        diagnosis_map,
+        transform,
+        cfg["data"].get("crop_ratio", 0.80),
+        threshold,
+        out_dir,
+        per_page=args.per_page,
+    )
 
-    print("\nDone. Look through the pages for: does predicted area roughly "
-          "track visible acetowhite/vascular regions? Cases with severe "
-          "diagnoses (CIN3, carcinoma) predicting near-zero area is the "
-          "same recall problem already seen in k-fold -- expected, not new "
-          "news. What's worth flagging is the OPPOSITE: images that look "
-          "structurally different from AnnoCerv (blurry, oddly cropped, "
-          "visible UI elements) producing wildly implausible predictions "
-          "(e.g. >50% of the image) would point to a domain-shift problem "
-          "specifically, distinct from the recall problem.")
+    print(
+        "\nDone. Look through the pages for: does predicted area roughly "
+        "track visible acetowhite/vascular regions? Cases with severe "
+        "diagnoses (CIN3, carcinoma) predicting near-zero area is the "
+        "same recall problem already seen in k-fold -- expected, not new "
+        "news. What's worth flagging is the OPPOSITE: images that look "
+        "structurally different from AnnoCerv (blurry, oddly cropped, "
+        "visible UI elements) producing wildly implausible predictions "
+        "(e.g. >50% of the image) would point to a domain-shift problem "
+        "specifically, distinct from the recall problem."
+    )
 
 
 if __name__ == "__main__":

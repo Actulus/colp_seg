@@ -115,7 +115,7 @@ def plot_qualitative(model, ds, device, threshold, n_samples, out_path, seed=0):
         axes[row, 1].axis("off")
 
         pred_overlay = img_np.copy()
-        pred_overlay[pred > 0.5] = [1, 0, 0]
+        pred_overlay[pred > 0.5] = [0.1, 0.3, 1.0]
         axes[row, 2].imshow(0.6 * img_np + 0.4 * pred_overlay)
         axes[row, 2].set_title(f"prediction (Dice={d:.2f})")
         axes[row, 2].axis("off")
